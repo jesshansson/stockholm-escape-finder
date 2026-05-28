@@ -1,29 +1,155 @@
+import { Suspense, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+
+import { Hero } from "@/components/stockholm/Hero";
+import { SiteHeader } from "@/components/stockholm/SiteHeader";
+import { MoodPills } from "@/components/stockholm/MoodPills";
+import { FilterBar } from "@/components/stockholm/FilterBar";
+import { DestinationGrid } from "@/components/stockholm/DestinationGrid";
+import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
+import { SavedTripsSheet } from "@/components/stockholm/SavedTripsSheet";
+import { SurpriseFab } from "@/components/stockholm/SurpriseFab";
+import { SiteFooter } from "@/components/stockholm/SiteFooter";
+
+import {
+  destinationsQueryOptions,
+  useDestinations,
+} from "@/lib/use-destinations";
+import { useSavedTrips } from "@/lib/use-saved-trips";
+import {
+  emptyFilters,
+  filterDestinations,
+  type ActiveFilters,
+} from "@/lib/filter";
+import type { MoodTag } from "@/data/types";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Stockholm Day Trips — Hitta din nästa Stockholmsutflykt" },
+      {
+        name: "description",
+        content:
+          "Upptäck snabbt naturpärlor, kulturplatser, caféer, restauranger och skärgårdsöar runt Stockholm — baserat på humör, avstånd och tid.",
+      },
+      { property: "og:title", content: "Stockholm Day Trips" },
+      {
+        property: "og:description",
+        content:
+          "Spontana dagsutflykter runt Stockholm — välj efter humör, restid och plats.",
+      },
     ],
   }),
-  component: Index,
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(destinationsQueryOptions());
+  },
+  component: IndexPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function IndexPage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-sand flex items-center justify-center text-ink-muted">
+          Laddar utflykter…
+        </div>
+      }
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+      <Discover />
+    </Suspense>
+  );
+}
+
+function Discover() {
+  const { data: destinations } = useDestinations();
+  const { savedIds, toggle, remove, isSaved } = useSavedTrips();
+
+  const [filters, setFilters] = useState<ActiveFilters>(emptyFilters);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [savedOpen, setSavedOpen] = useState(false);
+
+  const filtered = useMemo(
+    () => filterDestinations(destinations, filters),
+    [destinations, filters],
+  );
+
+  const activeDestination = useMemo(
+    () => destinations.find((d) => d.id === activeId) ?? null,
+    [destinations, activeId],
+  );
+
+  const savedDestinations = useMemo(
+    () => savedIds.map((id) => destinations.find((d) => d.id === id)).filter(
+      (d): d is NonNullable<typeof d> => Boolean(d),
+    ),
+    [savedIds, destinations],
+  );
+
+  const toggleMood = (mood: MoodTag) => {
+    setFilters({
+      ...filters,
+      moods: filters.moods.includes(mood)
+        ? filters.moods.filter((m) => m !== mood)
+        : [...filters.moods, mood],
+    });
+  };
+
+  const surprise = () => {
+    const pool = filtered.length > 0 ? filtered : destinations;
+    if (pool.length === 0) return;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    setActiveId(pick.id);
+  };
+
+  const scrollToResults = () => {
+    document.getElementById("upptack")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <main className="min-h-screen bg-sand text-ink">
+      <SiteHeader
+        onOpenSaved={() => setSavedOpen(true)}
+        savedCount={savedIds.length}
       />
-    </div>
+      <Hero onFindPlace={scrollToResults} onSurprise={surprise} />
+      <MoodPills selected={filters.moods} onToggle={toggleMood} />
+      <FilterBar
+        filters={filters}
+        setFilters={setFilters}
+        resultCount={filtered.length}
+      />
+      <DestinationGrid
+        destinations={filtered}
+        savedIds={savedIds}
+        onToggleSave={toggle}
+        onOpen={(id) => setActiveId(id)}
+        onClear={() => setFilters(emptyFilters)}
+      />
+      <SiteFooter
+        saved={savedDestinations}
+        onOpenSaved={() => setSavedOpen(true)}
+      />
+
+      <DestinationSheet
+        destination={activeDestination}
+        open={activeId !== null}
+        onOpenChange={(open) => !open && setActiveId(null)}
+        saved={activeDestination ? isSaved(activeDestination.id) : false}
+        onToggleSave={() => activeDestination && toggle(activeDestination.id)}
+      />
+
+      <SavedTripsSheet
+        open={savedOpen}
+        onOpenChange={setSavedOpen}
+        destinations={savedDestinations}
+        onOpen={(id) => {
+          setSavedOpen(false);
+          setActiveId(id);
+        }}
+        onRemove={remove}
+      />
+
+      <SurpriseFab onSurprise={surprise} />
+    </main>
   );
 }
