@@ -46,6 +46,7 @@
   --color-surface: var(--surface);
 
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
 }
 
 :root {
