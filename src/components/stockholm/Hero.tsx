@@ -8,9 +8,9 @@ type Props = {
 export function Hero({ onFindPlace, onSurprise }: Props) {
   return (
     <section className="px-6 sm:px-12 pt-10 sm:pt-16 pb-16 sm:pb-24">
+      <div className="max-w-4xl">
         <h1 style={{ fontFamily: 'var(--font-serif)' }} className="text-5xl sm:text-7xl font-normal tracking-[-0.02em] leading-[1.02] text-balance mb-6 text-ink">
           Hitta din nästa <em style={{ fontFamily: 'var(--font-serif)' }} className="text-moss italic">Stockholms</em>utflykt
-        </h1>
         </h1>
         <p className="text-lg sm:text-xl text-ink-muted max-w-[56ch] text-pretty leading-relaxed mb-10">
           Upptäck snabbt naturpärlor, kulturplatser, caféer, restauranger och
