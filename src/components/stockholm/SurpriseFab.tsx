@@ -15,7 +15,7 @@ export function SurpriseFab({ onSurprise }: Props) {
           onSurprise();
           setTimeout(() => setSpin(false), 600);
         }}
-        className="group flex items-center gap-3 pl-5 pr-6 py-3.5 bg-moss text-white rounded-full shadow-xl shadow-moss/20 hover:bg-moss/90 transition-transform hover:scale-[1.02] active:scale-100"
+        className="group flex items-center gap-2 sm:gap-3 pl-4 pr-5 sm:pl-5 sm:pr-6 py-3 sm:py-3.5 bg-moss text-white rounded-full shadow-xl shadow-moss/20 hover:bg-moss/90 transition-transform hover:scale-[1.02] active:scale-100"
       >
         <Shuffle
           className={[
@@ -23,7 +23,8 @@ export function SurpriseFab({ onSurprise }: Props) {
             spin ? "rotate-180" : "group-hover:rotate-12",
           ].join(" ")}
         />
-        <span className="font-medium text-sm">Överraska mig idag</span>
+        <span className="font-medium text-sm whitespace-nowrap">Överraska mig</span>
+
       </button>
     </div>
   );

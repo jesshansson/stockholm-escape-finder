@@ -7,7 +7,7 @@ type Props = {
 
 export function SiteFooter({ saved, onOpenSaved }: Props) {
   return (
-    <footer className="px-6 sm:px-12 py-14 border-t border-black/5">
+    <footer className="px-5 sm:px-12 py-12 sm:py-14 border-t border-black/5">
       <div className="flex flex-col md:flex-row justify-between gap-10">
         <div>
           <h4 className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-muted/70 mb-4">

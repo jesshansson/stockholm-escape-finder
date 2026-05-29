@@ -14,7 +14,7 @@ type Props = {
 
 export function MoodPills({ selected, onToggle }: Props) {
   return (
-    <section className="px-6 sm:px-12 mb-12">
+    <section className="px-5 sm:px-12 mb-8 sm:mb-12">
       <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted/70 mb-5">
         Välj humör
       </h2>
