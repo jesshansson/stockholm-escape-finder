@@ -38,8 +38,9 @@ export function DestinationGrid({
   }
 
   return (
-    <section id="upptack" className="px-6 sm:px-12 pb-32">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+    <section id="upptack" className="px-5 sm:px-12 pb-36 sm:pb-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
+
         {destinations.map((d, i) => (
           <DestinationCard
             key={d.id}
