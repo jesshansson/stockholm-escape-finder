@@ -1,4 +1,6 @@
-import { Bookmark } from "lucide-react";
+import { Bookmark, Map as MapIcon } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
 
 type Props = {
   onOpenSaved: () => void;
@@ -8,24 +10,37 @@ type Props = {
 export function SiteHeader({ onOpenSaved, savedCount }: Props) {
   return (
     <header className="px-5 sm:px-12 py-5 sm:py-6 flex justify-between items-center">
-      <div className="flex items-center gap-2.5">
+      <Link to="/" className="flex items-center gap-2.5">
         <div className="size-8 rounded-full bg-moss/10 flex items-center justify-center">
           <div className="size-3.5 rounded-sm bg-moss" />
         </div>
         <span className="text-sm font-medium tracking-wide uppercase text-ink">
           Stockholm Day Trips
         </span>
-      </div>
-      <nav className="flex items-center gap-2 sm:gap-6 text-sm font-medium">
-        <a href="#upptack" className="hidden sm:inline text-ink hover:text-moss transition-colors">
+      </Link>
+      <nav className="flex items-center gap-1 sm:gap-3 text-sm font-medium">
+        <Link
+          to="/"
+          activeOptions={{ exact: true }}
+          activeProps={{ className: "text-moss" }}
+          className="hidden sm:inline px-3 py-1.5 text-ink-muted hover:text-ink transition-colors"
+        >
           Upptäck
-        </a>
+        </Link>
+        <Link
+          to="/karta"
+          activeProps={{ className: "text-moss bg-moss/10" }}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-ink-soft transition-colors text-ink-muted hover:text-ink"
+        >
+          <MapIcon className="size-4" />
+          <span>Karta</span>
+        </Link>
         <button
           onClick={onOpenSaved}
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-ink-soft transition-colors text-ink-muted hover:text-ink"
         >
           <Bookmark className="size-4" />
-          <span>Sparade</span>
+          <span className="hidden sm:inline">Sparade</span>
           {savedCount > 0 && (
             <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-moss text-white">
               {savedCount}
