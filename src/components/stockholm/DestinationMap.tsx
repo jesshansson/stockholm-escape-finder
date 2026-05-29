@@ -129,11 +129,12 @@ export function DestinationMap({ destinations, activeId, onSelect }: Props) {
   // Pan to active marker
   useEffect(() => {
     if (!activeId || !mapRef.current) return;
+    const g = (window as GoogleNS).google;
     const pos = destinationCoordinates[activeId];
     const marker = markersRef.current[activeId];
-    if (!pos || !marker) return;
+    if (!pos || !marker || !g) return;
     mapRef.current.panTo(pos);
-    google.maps.event.trigger(marker, "click");
+    g.maps.event.trigger(marker, "click");
   }, [activeId]);
 
   if (error) {
