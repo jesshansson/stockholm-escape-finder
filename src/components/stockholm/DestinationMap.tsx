@@ -127,7 +127,7 @@ export function DestinationMap({ destinations, activeId, onSelect }: Props) {
         mapRef.current.setZoom(11);
       }
     }
-  }, [destinations, onSelect]);
+  }, [destinations, onSelect, ready]);
 
   // Pan to active marker
   useEffect(() => {
