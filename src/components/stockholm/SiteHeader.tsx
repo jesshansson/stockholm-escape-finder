@@ -1,4 +1,6 @@
-import { Bookmark } from "lucide-react";
+import { Bookmark, Map as MapIcon } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
 
 type Props = {
   onOpenSaved: () => void;
