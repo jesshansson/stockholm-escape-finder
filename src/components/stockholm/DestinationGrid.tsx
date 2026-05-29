@@ -18,7 +18,7 @@ export function DestinationGrid({
 }: Props) {
   if (destinations.length === 0) {
     return (
-      <section id="upptack" className="px-6 sm:px-12 pb-32">
+      <section id="upptack" className="px-5 sm:px-12 pb-36 sm:pb-32">
         <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
           <h3 className="text-xl font-medium text-ink mb-2">
             Inga platser matchar
