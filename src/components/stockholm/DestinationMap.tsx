@@ -53,6 +53,8 @@ export function DestinationMap({ destinations, activeId, onSelect }: Props) {
   const infoRef = useRef<any>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const [ready, setReady] = useState(false);
+
   // Init map once
   useEffect(() => {
     let cancelled = false;
@@ -71,6 +73,7 @@ export function DestinationMap({ destinations, activeId, onSelect }: Props) {
           ],
         });
         infoRef.current = new google.maps.InfoWindow();
+        setReady(true);
       })
       .catch((e) => setError(e.message ?? "Kartan kunde inte laddas"));
     return () => {
