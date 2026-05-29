@@ -35,7 +35,7 @@ export function FilterBar({ filters, setFilters, resultCount }: Props) {
   const total = countActiveFilters(filters);
 
   return (
-    <section className="px-6 sm:px-12 mb-8 sticky top-2 z-30">
+    <section className="px-5 sm:px-12 mb-8 sticky top-2 z-30">
       <div className="bg-surface/85 backdrop-blur-md rounded-2xl ring-1 ring-black/5 p-2 flex items-center gap-2 overflow-x-auto">
         <div className="px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-ink-muted/70 border-r border-ink-soft mr-1 shrink-0">
           Restid
