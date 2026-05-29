@@ -7,7 +7,7 @@ type Props = {
 
 export function SiteHeader({ onOpenSaved, savedCount }: Props) {
   return (
-    <header className="px-6 sm:px-12 py-6 flex justify-between items-center">
+    <header className="px-5 sm:px-12 py-5 sm:py-6 flex justify-between items-center">
       <div className="flex items-center gap-2.5">
         <div className="size-8 rounded-full bg-moss/10 flex items-center justify-center">
           <div className="size-3.5 rounded-sm bg-moss" />
