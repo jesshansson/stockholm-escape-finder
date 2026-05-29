@@ -138,7 +138,7 @@ export function DestinationMap({ destinations, activeId, onSelect }: Props) {
     if (!pos || !marker || !g) return;
     mapRef.current.panTo(pos);
     g.maps.event.trigger(marker, "click");
-  }, [activeId]);
+  }, [activeId, ready]);
 
   if (error) {
     return (
