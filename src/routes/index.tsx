@@ -103,7 +103,7 @@ function Discover() {
         onOpenSaved={() => setSavedOpen(true)}
         savedCount={savedIds.length}
       />
-      <Hero onFindPlace={scrollToResults} onSurprise={surprise} />
+      <Hero onFindPlace={scrollToResults} />
       <MoodPills selected={filters.moods} onToggle={toggleMood} />
       <FilterBar
         filters={filters}
@@ -140,8 +140,6 @@ function Discover() {
         }}
         onRemove={remove}
       />
-
-      <SurpriseFab onSurprise={surprise} />
     </main>
   );
 }
