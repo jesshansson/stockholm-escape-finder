@@ -1,11 +1,10 @@
-import { Shuffle, Compass } from "lucide-react";
+import { Compass } from "lucide-react";
 
 type Props = {
   onFindPlace: () => void;
-  onSurprise: () => void;
 };
 
-export function Hero({ onFindPlace, onSurprise }: Props) {
+export function Hero({ onFindPlace }: Props) {
   return (
     <section className="px-5 sm:px-12 pt-6 sm:pt-16 pb-12 sm:pb-24">
       <div className="max-w-4xl">
@@ -24,13 +23,6 @@ export function Hero({ onFindPlace, onSurprise }: Props) {
           >
             <Compass className="size-4" />
             Hitta en plats
-          </button>
-          <button
-            onClick={onSurprise}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-surface text-ink rounded-full font-medium text-sm ring-1 ring-black/5 hover:-translate-y-px transition-transform"
-          >
-            <Shuffle className="size-4" />
-            Överraska mig
           </button>
         </div>
       </div>
