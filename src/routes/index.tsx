@@ -8,7 +8,6 @@ import { FilterBar } from "@/components/stockholm/FilterBar";
 import { DestinationGrid } from "@/components/stockholm/DestinationGrid";
 import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
 import { SavedTripsSheet } from "@/components/stockholm/SavedTripsSheet";
-import { SurpriseFab } from "@/components/stockholm/SurpriseFab";
 import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
 import {
