@@ -93,13 +93,6 @@ function Discover() {
     });
   };
 
-  const surprise = () => {
-    const pool = filtered.length > 0 ? filtered : destinations;
-    if (pool.length === 0) return;
-    const pick = pool[Math.floor(Math.random() * pool.length)];
-    setActiveId(pick.id);
-  };
-
   const scrollToResults = () => {
     document.getElementById("upptack")?.scrollIntoView({ behavior: "smooth" });
   };
