@@ -8,7 +8,6 @@ import { FilterBar } from "@/components/stockholm/FilterBar";
 import { DestinationGrid } from "@/components/stockholm/DestinationGrid";
 import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
 import { SavedTripsSheet } from "@/components/stockholm/SavedTripsSheet";
-import { SurpriseFab } from "@/components/stockholm/SurpriseFab";
 import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
 import {
@@ -94,13 +93,6 @@ function Discover() {
     });
   };
 
-  const surprise = () => {
-    const pool = filtered.length > 0 ? filtered : destinations;
-    if (pool.length === 0) return;
-    const pick = pool[Math.floor(Math.random() * pool.length)];
-    setActiveId(pick.id);
-  };
-
   const scrollToResults = () => {
     document.getElementById("upptack")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -111,7 +103,7 @@ function Discover() {
         onOpenSaved={() => setSavedOpen(true)}
         savedCount={savedIds.length}
       />
-      <Hero onFindPlace={scrollToResults} onSurprise={surprise} />
+      <Hero onFindPlace={scrollToResults} />
       <MoodPills selected={filters.moods} onToggle={toggleMood} />
       <FilterBar
         filters={filters}
@@ -148,8 +140,6 @@ function Discover() {
         }}
         onRemove={remove}
       />
-
-      <SurpriseFab onSurprise={surprise} />
     </main>
   );
 }
