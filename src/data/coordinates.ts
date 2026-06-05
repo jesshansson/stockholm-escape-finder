@@ -18,4 +18,10 @@ export const destinationCoordinates: Record<string, LatLng> = {
   sandhamn: { lat: 59.2872, lng: 18.9183 },
   nackareservatet: { lat: 59.2950, lng: 18.1900 },
   "rosendals-tradgard": { lat: 59.3267, lng: 18.1106 },
+  mariefred: { lat: 59.2586, lng: 17.2261 },
+  uto: { lat: 58.9667, lng: 18.3000 },
+  birka: { lat: 59.3361, lng: 17.5419 },
+  "tyreso-slott": { lat: 59.2342, lng: 18.2625 },
+  bjorno: { lat: 59.2772, lng: 18.5083 },
+  saltsjobaden: { lat: 59.2833, lng: 18.3000 },
 };
