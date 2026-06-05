@@ -13,6 +13,12 @@ import grindaImg from "@/assets/destinations/grinda.jpg";
 import sandhamnImg from "@/assets/destinations/sandhamn.jpg";
 import nackareservatetImg from "@/assets/destinations/nackareservatet.jpg";
 import rosendalsImg from "@/assets/destinations/rosendals.jpg";
+import mariefredImg from "@/assets/destinations/mariefred.jpg";
+import utoImg from "@/assets/destinations/uto.jpg";
+import birkaImg from "@/assets/destinations/birka.jpg";
+import tyresoImg from "@/assets/destinations/tyreso.jpg";
+import bjornoImg from "@/assets/destinations/bjorno.jpg";
+import saltsjobadenImg from "@/assets/destinations/saltsjobaden.jpg";
 
 import type { Destination } from "./types";
 
