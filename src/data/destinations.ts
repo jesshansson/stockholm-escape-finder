@@ -13,6 +13,12 @@ import grindaImg from "@/assets/destinations/grinda.jpg";
 import sandhamnImg from "@/assets/destinations/sandhamn.jpg";
 import nackareservatetImg from "@/assets/destinations/nackareservatet.jpg";
 import rosendalsImg from "@/assets/destinations/rosendals.jpg";
+import mariefredImg from "@/assets/destinations/mariefred.jpg";
+import utoImg from "@/assets/destinations/uto.jpg";
+import birkaImg from "@/assets/destinations/birka.jpg";
+import tyresoImg from "@/assets/destinations/tyreso.jpg";
+import bjornoImg from "@/assets/destinations/bjorno.jpg";
+import saltsjobadenImg from "@/assets/destinations/saltsjobaden.jpg";
 
 import type { Destination } from "./types";
 
@@ -486,5 +492,237 @@ export const localDestinations: Destination[] = [
       "Hela platsen är ett café — sallader, soppor och världens bästa kanelbulle.",
     bestSeason: "Maj–september.",
     image: rosendalsImg,
+  },
+  {
+    id: "mariefred",
+    name: "Mariefred",
+    category: "Småstad / by",
+    description:
+      "Mysig småstad vid Mälaren med Gripsholms slott, ångbåt från Stockholm och kullerstensgator.",
+    travelTime: "ca 1 h med bil, 3,5 h med ångbåt",
+    travelMinutes: 60,
+    distanceRange: "60-120",
+    indoorOutdoor: "Både och",
+    moodTags: ["Mysig", "Romantisk", "Fotovänlig", "Barnvänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Barnvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "Heldag",
+    bestFor: ["Gripsholms slott", "Ångbåtstur", "Antikvariat och fika"],
+    howToGetThere:
+      "Bil ca 1 h via E20. Eller ta ångbåten S/S Mariefred från Klara Mälarstrand — ca 3,5 h enkel väg, en upplevelse i sig.",
+    goodToKnow:
+      "Ångbåten går endast sommartid, oftast helger. Slottet stängt vissa vinterdagar — kolla öppettider.",
+    whyGo:
+      "Perfekt blandning av småstadsidyll, kungligt slott och Mälarens lugn.",
+    whatToDo:
+      "Besök Gripsholms slott och porträttsamlingen, strosa i Gripsholms Värdshus trädgård, åk ångloket Östra Södermanlands Järnväg.",
+    eatAndCoffee:
+      "Gripsholms Värdshus (Sveriges äldsta värdshus) eller Mariefreds Bageri för fika.",
+    bestSeason: "Maj–september när ångbåten går.",
+    image: mariefredImg,
+  },
+  {
+    id: "uto",
+    name: "Utö",
+    category: "Skärgårdsö",
+    description:
+      "Stor ö i södra skärgården med långa cykelvägar, gruvhistoria, sandstränder och värdshus.",
+    travelTime: "ca 2 h med buss + båt",
+    travelMinutes: 120,
+    distanceRange: "60-120",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Aktiv", "Lugn & vacker", "Solig dag", "Fotovänlig", "Barnvänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Barnvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: true,
+    costLevel: 2,
+    duration: "Heldag",
+    bestFor: ["Cykla runt ön", "Bad på Stora Sand", "Gruvmuseet"],
+    howToGetThere:
+      "Pendel till Västerhaninge + buss 846 till Årsta brygga, sedan Waxholmsbåt till Utö (totalt ca 2 h).",
+    goodToKnow:
+      "Hyr cykel direkt i hamnen — ön är stor och plattare än de flesta. Bra för barnfamiljer.",
+    whyGo:
+      "En av få öar där du kan cykla i timmar mellan stränder, skog och historiska gruvor.",
+    whatToDo:
+      "Cykla till Stora Sand och bada, besök gruvmuseet, fika på Bageriet och drick öl på Utö Värdshus.",
+    eatAndCoffee:
+      "Utö Bageri (legendariskt limpa-bröd), Utö Värdshus och Båtshaket vid hamnen.",
+    bestSeason: "Juni–augusti.",
+    image: utoImg,
+  },
+  {
+    id: "birka",
+    name: "Birka",
+    category: "Slott / historisk plats",
+    description:
+      "Sveriges första stad och världsarv på Björkö — vikingaby, gravhögar och museum mitt i Mälaren.",
+    travelTime: "ca 2 h med båt från Stadshuskajen",
+    travelMinutes: 120,
+    distanceRange: "60-120",
+    indoorOutdoor: "Både och",
+    moodTags: ["Lugn & vacker", "Fotovänlig", "Barnvänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Barnvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: true,
+    costLevel: 3,
+    duration: "Heldag",
+    bestFor: ["Vikingahistoria", "Båttur på Mälaren", "Guidad visning"],
+    howToGetThere:
+      "Båt från Stadshuskajen, ca 2 h enkel väg. Båtbiljett inkluderar entré till museet.",
+    goodToKnow:
+      "Endast öppet maj–september. En båt om dagen — missar du den blir det övernattning.",
+    whyGo:
+      "Stå mitt i en riktig vikingaby med utsikt över samma vatten som handelsmännen för 1200 år sedan.",
+    whatToDo:
+      "Guidad tur bland gravhögarna, besök museet och rekonstruerade vikingabyn, fika på Särimner.",
+    eatAndCoffee:
+      "Värdshuset Särimner serverar lunch och fika med Mälarutsikt.",
+    bestSeason: "Maj–september.",
+    image: birkaImg,
+  },
+  {
+    id: "tyreso-slott",
+    name: "Tyresö slott",
+    category: "Slott / historisk plats",
+    description:
+      "Vackert 1600-talsslott vid Kalvfjärden med engelsk park, kapell och Nordiska museets café.",
+    travelTime: "ca 30 min med bil, 45 min med buss",
+    travelMinutes: 30,
+    distanceRange: "0-30",
+    indoorOutdoor: "Både och",
+    moodTags: ["Romantisk", "Lugn & vacker", "Fotovänlig", "Regnig dag"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "Halvdag",
+    bestFor: ["Slottspark", "Café Slottsboden", "Stranden Notholmen"],
+    howToGetThere:
+      "Buss 875 från Gullmarsplan till Tyresö slott, ca 45 min. Bil ca 30 min via Tyresövägen.",
+    goodToKnow:
+      "Parken är gratis och öppen året runt. Slottsvisning bara sommartid.",
+    whyGo:
+      "Få känner till det här slottet — ger samma vibb som Drottningholm men utan turistbussarna.",
+    whatToDo:
+      "Vandra i engelska parken, besök slottet, bad vid Notholmen och fika i Slottsboden.",
+    eatAndCoffee:
+      "Café Slottsboden — klassiskt herrgårdsfika i orangerimiljö.",
+    bestSeason: "Maj–september.",
+    image: tyresoImg,
+  },
+  {
+    id: "bjorno",
+    name: "Björnö naturreservat",
+    category: "Natur",
+    description:
+      "Klippkust, badvikar och tallskog på Ingarö — en av Stockholms vackraste naturupplevelser.",
+    travelTime: "ca 45 min med bil",
+    travelMinutes: 45,
+    distanceRange: "30-60",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Lugn & vacker", "Aktiv", "Solig dag", "Fotovänlig", "Budgetvänlig"],
+    practicalTags: [
+      "Utomhus",
+      "Hundvänligt",
+      "Barnvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: false,
+    cafeAvailable: false,
+    publicTransport: false,
+    island: false,
+    costLevel: 1,
+    duration: "Halvdag",
+    bestFor: ["Klippbad", "Vandring längs kusten", "Tältnätter"],
+    howToGetThere:
+      "Bil ca 45 min via Värmdöleden mot Ingarö, sedan skyltat till Björnö. Parkering finns.",
+    goodToKnow:
+      "Inga kaféer i reservatet — packa matsäck. Eldstäder finns vid vissa vikar.",
+    whyGo:
+      "Skärgårdskänslan utan båt: släta klippor, kristallklart vatten och tallskog hela vägen ner till havet.",
+    whatToDo:
+      "Vandra Björnöleden runt halvön, bada från klipporna, paddla kajak eller övernatta i tält.",
+    eatAndCoffee:
+      "Inget på plats — närmaste kafé ligger i Ingarö centrum.",
+    bestSeason: "Maj–september.",
+    image: bjornoImg,
+  },
+  {
+    id: "saltsjobaden",
+    name: "Saltsjöbaden",
+    category: "Småstad / by",
+    description:
+      "Sekelskiftesidyll med Grand Hotel, segelbåtar och promenader längs Baggensfjärden.",
+    travelTime: "ca 25 min med Saltsjöbanan",
+    travelMinutes: 25,
+    distanceRange: "0-30",
+    indoorOutdoor: "Både och",
+    moodTags: ["Romantisk", "Lite lyxigt", "Lugn & vacker", "Fotovänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Bra på vintern",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Året runt"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 3,
+    duration: "Halvdag",
+    bestFor: ["Brunch på Grand", "Strandpromenad", "Bastubad vid havet"],
+    howToGetThere:
+      "Saltsjöbanan från Slussen direkt till Saltsjöbaden, ca 25 min.",
+    goodToKnow:
+      "Grand Hotels brunch är populär på helger — boka i förväg.",
+    whyGo:
+      "Som att kliva in i ett gammalt vykort — sekelskifte, havsutsikt och lugn.",
+    whatToDo:
+      "Brunch eller fika på Grand Hotel Saltsjöbaden, promenera Tattby-leden, bada från Restaurangholmen.",
+    eatAndCoffee:
+      "Grand Hotel Saltsjöbaden för klassisk lyx, Saltis Café för enklare fika.",
+    bestSeason: "Året runt — magiskt även vintertid.",
+    image: saltsjobadenImg,
   },
 ];
