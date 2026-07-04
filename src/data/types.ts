@@ -84,4 +84,19 @@ export type Destination = {
 
   // Media (URL string — works equally for local imports and remote sources)
   image: string;
+
+  // Optional attribution for the image. Required when using CC-licensed
+  // photos from e.g. Wikimedia Commons; omit for own/AI-generated art.
+  imageCredit?: {
+    author: string;
+    source:
+      | "Wikimedia Commons"
+      | "Unsplash"
+      | "Pexels"
+      | "Flickr"
+      | "Egen";
+    sourceUrl: string;
+    license: string;
+    licenseUrl?: string;
+  };
 };
