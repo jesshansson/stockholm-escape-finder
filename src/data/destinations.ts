@@ -725,4 +725,737 @@ export const localDestinations: Destination[] = [
     bestSeason: "Året runt — magiskt även vintertid.",
     image: saltsjobadenImg,
   },
+  {
+    id: "skansen",
+    name: "Skansen",
+    category: "Museum",
+    description:
+      "Världens äldsta friluftsmuseum med historiska gårdar, nordiska djur och hisnande utsikt över Saltsjön.",
+    travelTime: "ca 15 min med buss/spårvagn från city",
+    travelMinutes: 15,
+    distanceRange: "0-30",
+    indoorOutdoor: "Både och",
+    moodTags: ["Barnvänlig", "Fotovänlig", "Solig dag", "Aktiv"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Barnvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Året runt"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "Halvdag",
+    bestFor: ["Djurpark", "Historiska gårdar", "Utsikt över Saltsjön"],
+    howToGetThere:
+      "Buss 44 eller spårvagn 7 till Skansen, ca 15 min från city.",
+    goodToKnow:
+      "Stort område — räkna med flera timmar om ni vill se det mesta. Glashyttan och bagarstugan är barnfavoriter.",
+    whyGo:
+      "En tidsresa genom svensk historia med björnar, lodjur och 1800-talsgårdar på samma kulle.",
+    whatToDo:
+      "Besök djurparken, kika in i de historiska husen, ta linbanan för utsikt och avsluta med våfflor.",
+    eatAndCoffee:
+      "Skansens många kaféer, bland annat Bredablick för utsikt med fikat.",
+    bestSeason: "Året runt, men sommarens hantverksdagar och julmarknaden i december är extra populära.",
+    image: "https://picsum.photos/seed/skansen/800/600",
+  },
+  {
+    id: "vasamuseet",
+    name: "Vasamuseet",
+    category: "Museum",
+    description:
+      "Ett helt bevarat 1600-talsskepp i originalskick — ett av Sveriges mest besökta museer.",
+    travelTime: "ca 15 min med buss från city",
+    travelMinutes: 15,
+    distanceRange: "0-30",
+    indoorOutdoor: "Inomhus",
+    moodTags: ["Fotovänlig", "Regnig dag", "Barnvänlig"],
+    practicalTags: [
+      "Inomhus",
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Barnvänligt",
+      "Bra på vintern",
+    ],
+    seasonTags: ["Året runt"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "1-2 timmar",
+    bestFor: ["Skeppshistoria", "Perfekt regndag", "Guidad visning"],
+    howToGetThere:
+      "Buss 67 eller spårvagn 7 till Vasamuseet, ca 15 min från Sergels torg.",
+    goodToKnow:
+      "Boka biljett i förväg på sommaren — köerna kan bli långa.",
+    whyGo:
+      "Det enda nästan helt intakta skeppet från 1600-talet i världen, bärgat efter 333 år på havets botten.",
+    whatToDo:
+      "Vandra runt skeppet på flera våningsplan, se filmen om bärgningen och utforska modellverkstaden.",
+    eatAndCoffee:
+      "Museets eget café, eller gå vidare till Wärdshuset på Djurgården.",
+    bestSeason: "Året runt — perfekt för regniga dagar.",
+    image: "https://picsum.photos/seed/vasamuseet/800/600",
+  },
+  {
+    id: "skogskyrkogarden",
+    name: "Skogskyrkogården",
+    category: "Kultur",
+    description:
+      "Världsarvslistad begravningsplats av Asplund och Lewerentz — minimalistisk arkitektur i tallskog.",
+    travelTime: "ca 20 min med tunnelbana",
+    travelMinutes: 20,
+    distanceRange: "0-30",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Lugn & vacker", "Fotovänlig"],
+    practicalTags: ["Utomhus", "Lätt med kollektivtrafik"],
+    seasonTags: ["Året runt"],
+    foodAvailable: false,
+    cafeAvailable: false,
+    publicTransport: true,
+    island: false,
+    costLevel: 1,
+    duration: "1-2 timmar",
+    bestFor: ["Arkitektur", "Stillsam promenad", "Fotografering"],
+    howToGetThere:
+      "Tunnelbana grön linje till Skogskyrkogården, ca 20 min från city.",
+    goodToKnow:
+      "Ett UNESCO-världsarv — visa respekt, det är en aktiv begravningsplats.",
+    whyGo:
+      "Ett av 1900-talets mest inflytelserika arkitekturverk, där landskap och byggnad smälter samman.",
+    whatToDo:
+      "Gå längs Sju brunnars väg, besök Skogskapellet och Uppståndelsekapellet, sitt vid Meditationslunden.",
+    eatAndCoffee:
+      "Inget på plats — närmaste fik finns vid Enskede gård.",
+    bestSeason: "Vår och höst när ljuset faller lågt genom tallarna.",
+    image: "https://picsum.photos/seed/skogskyrkogarden/800/600",
+  },
+  {
+    id: "waldemarsudde",
+    name: "Waldemarsudde",
+    category: "Museum",
+    description:
+      "Prins Eugens forna hem på Djurgården — sekelskiftesvilla, konstsamling och skulpturpark vid vattnet.",
+    travelTime: "ca 20 min med buss",
+    travelMinutes: 20,
+    distanceRange: "0-30",
+    indoorOutdoor: "Både och",
+    moodTags: ["Lugn & vacker", "Romantisk", "Lite lyxigt", "Fotovänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Café i närheten",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: false,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "1-2 timmar",
+    bestFor: ["Konstsamling", "Skulpturpark", "Picknick vid vattnet"],
+    howToGetThere:
+      "Buss 67 till Waldemarsudde, ca 20 min från city.",
+    goodToKnow:
+      "Trädgården är gratis att besöka även utan museibiljett.",
+    whyGo:
+      "Konst, arkitektur och en av Djurgårdens vackraste vyer över inloppet — sällan trångt.",
+    whatToDo:
+      "Se konstsamlingen i villan, vandra bland skulpturerna i parken och fika i orangeriet.",
+    eatAndCoffee:
+      "Waldemarsuddes café i det gamla växthuset.",
+    bestSeason: "Maj–september när trädgården blommar som mest.",
+    image: "https://picsum.photos/seed/waldemarsudde/800/600",
+  },
+  {
+    id: "thielska-galleriet",
+    name: "Thielska Galleriet",
+    category: "Museum",
+    description:
+      "Jugendvilla med Nordens mest betydande privata konstsamling, vackert belägen på Djurgårdens spets.",
+    travelTime: "ca 25 min med buss",
+    travelMinutes: 25,
+    distanceRange: "0-30",
+    indoorOutdoor: "Både och",
+    moodTags: ["Lugn & vacker", "Lite lyxigt", "Fotovänlig", "Romantisk"],
+    practicalTags: ["Lätt med kollektivtrafik", "Café i närheten"],
+    seasonTags: ["Året runt"],
+    foodAvailable: false,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "1-2 timmar",
+    bestFor: ["Konst", "Arkitektur", "Havsutsikt"],
+    howToGetThere:
+      "Buss 69 till ändhållplatsen, sedan kort promenad, totalt ca 25 min.",
+    goodToKnow:
+      "Liten och personlig — räkna med en dryg timme. Trädgårdscaféet har begränsade öppettider.",
+    whyGo:
+      "En av Stockholms mest underskattade konstupplevelser, med verk av Munch, Gauguin och Larsson i en hemtrevlig villa.",
+    whatToDo:
+      "Se konstsamlingen, vandra i skulpturparken ner mot vattnet och avsluta med fika i trädgården.",
+    eatAndCoffee:
+      "Trädgårdscaféet, öppet under högsäsong.",
+    bestSeason: "Vår till höst, för trädgården och utsikten.",
+    image: "https://picsum.photos/seed/thielska-galleriet/800/600",
+  },
+  {
+    id: "hagaparken",
+    name: "Hagaparken",
+    category: "Natur",
+    description:
+      "Kunglig engelsk park med Fjärilshuset, Koppartälten och pampiga ekar mitt i stan.",
+    travelTime: "ca 20 min med buss",
+    travelMinutes: 20,
+    distanceRange: "0-30",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Lugn & vacker", "Barnvänlig", "Fotovänlig", "Solig dag"],
+    practicalTags: [
+      "Utomhus",
+      "Lätt med kollektivtrafik",
+      "Café i närheten",
+      "Hundvänligt",
+      "Barnvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Året runt"],
+    foodAvailable: false,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 1,
+    duration: "1-2 timmar",
+    bestFor: ["Picknick", "Fjärilshuset", "Löprunda"],
+    howToGetThere:
+      "Buss 515 eller 50 till Haga, ca 20 min från city.",
+    goodToKnow:
+      "Parken är gratis. Fjärilshuset och Koppartälten kostar entré.",
+    whyGo:
+      "Kunglig park med 1700-talshistoria och plats för allt från picknick till löprundor.",
+    whatToDo:
+      "Gå runt Brunnsviken, besök Fjärilshuset, kika in i Koppartälten och fika vid Haga Forum.",
+    eatAndCoffee:
+      "Haga Forum och flera kaféer längs strandpromenaden.",
+    bestSeason: "Året runt — extra fint på våren när körsbärsträden blommar.",
+    image: "https://picsum.photos/seed/hagaparken/800/600",
+  },
+  {
+    id: "skokloster-slott",
+    name: "Skokloster slott",
+    category: "Slott / historisk plats",
+    description:
+      "Sveriges största privatslott från 1600-talet — orört interiör med vapen, möbler och konst i tidskapsel.",
+    travelTime: "ca 50 min med bil",
+    travelMinutes: 50,
+    distanceRange: "30-60",
+    indoorOutdoor: "Både och",
+    moodTags: ["Lugn & vacker", "Fotovänlig", "Regnig dag"],
+    practicalTags: ["Café i närheten", "Bra på sommaren"],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: false,
+    cafeAvailable: true,
+    publicTransport: false,
+    island: false,
+    costLevel: 2,
+    duration: "Halvdag",
+    bestFor: ["Slottsvisning", "Motormuseum", "Mälarutsikt"],
+    howToGetThere:
+      "Bil ca 50 min via E18 mot Uppsala/Bålsta. Ingen direkt kollektivtrafik.",
+    goodToKnow:
+      "Slottet stod aldrig helt färdigbyggt — många rum är fortfarande i originalskick från 1670-talet.",
+    whyGo:
+      "Som att kliva rakt in i 1600-talet — möbler, vapen och konst som aldrig flyttats.",
+    whatToDo:
+      "Guidad slottsvisning, besök motormuseet i ladugården och promenera ner till Mälarstranden.",
+    eatAndCoffee:
+      "Slottscaféet i den gamla ladugården.",
+    bestSeason: "Maj–september.",
+    image: "https://picsum.photos/seed/skokloster-slott/800/600",
+  },
+  {
+    id: "steninge-slott",
+    name: "Steninge slott",
+    category: "Slott / historisk plats",
+    description:
+      "Barockslott vid Mälaren med konsthantverk, kafé i orangeriet och promenadstigar i slottsparken.",
+    travelTime: "ca 40 min med bil",
+    travelMinutes: 40,
+    distanceRange: "30-60",
+    indoorOutdoor: "Både och",
+    moodTags: ["Lugn & vacker", "Mysig", "Lite lyxigt", "Fotovänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "Halvdag",
+    bestFor: ["Slottspark", "Konsthantverk", "Fika vid vattnet"],
+    howToGetThere:
+      "Bil ca 40 min mot Märsta, eller pendeltåg till Märsta + buss, totalt ca 1 h.",
+    goodToKnow:
+      "Slottsparken och keramikverkstäderna är gratis att besöka.",
+    whyGo:
+      "Ett av Mälardalens vackraste barockslott, med levande konsthantverk istället för ett dammigt museum.",
+    whatToDo:
+      "Vandra i slottsparken, besök konsthantverkarna i ladugården och ät lunch med sjöutsikt.",
+    eatAndCoffee:
+      "Steninge Slottscafé och restaurang i orangeriet.",
+    bestSeason: "Maj–september.",
+    image: "https://picsum.photos/seed/steninge-slott/800/600",
+  },
+  {
+    id: "rosersberg-slott",
+    name: "Rosersberg slott",
+    category: "Slott / historisk plats",
+    description:
+      "Kungligt 1600-talsslott vid Mälaren, mindre känt och betydligt lugnare än Drottningholm.",
+    travelTime: "ca 35 min med bil eller pendeltåg",
+    travelMinutes: 35,
+    distanceRange: "30-60",
+    indoorOutdoor: "Både och",
+    moodTags: ["Lugn & vacker", "Romantisk", "Fotovänlig"],
+    practicalTags: ["Lätt med kollektivtrafik", "Bra på sommaren"],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: false,
+    cafeAvailable: false,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "1-2 timmar",
+    bestFor: ["Slottspark", "Stillsam promenad", "Mälarutsikt"],
+    howToGetThere:
+      "Pendeltåg till Rosersberg, sedan ca 15 min promenad. Bil ca 35 min.",
+    goodToKnow:
+      "Slottet har begränsade öppettider — kolla i förväg om ni vill se interiören.",
+    whyGo:
+      "Samma kungliga charm som de stora slotten, men nästan helt utan turister.",
+    whatToDo:
+      "Promenera i den engelska parken, ta en guidad slottsvisning och avsluta vid sjön.",
+    eatAndCoffee:
+      "Inget café på plats — ta med matsäck eller stanna till i Märsta på vägen.",
+    bestSeason: "Maj–september.",
+    image: "https://picsum.photos/seed/rosersberg-slott/800/600",
+  },
+  {
+    id: "moja",
+    name: "Möja",
+    category: "Skärgårdsö",
+    description:
+      "Klassisk skärgårdsö med smala vikar, äppelträd och ett av arkipelagens mest genuina fiskelägen.",
+    travelTime: "ca 2,5–3 h med båt",
+    travelMinutes: 165,
+    distanceRange: "120+",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Lugn & vacker", "Solig dag", "Fotovänlig", "Mysig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Sommar"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: true,
+    costLevel: 2,
+    duration: "Heldag",
+    bestFor: ["Cykla mellan vikarna", "Äppelmustning", "Fiskeläge"],
+    howToGetThere:
+      "Waxholmsbåt från Strömkajen, ca 2,5–3 h beroende på linje.",
+    goodToKnow:
+      "Ön är avlång — hyr cykel vid bryggan för att hinna utforska flera byar.",
+    whyGo:
+      "En av ytterskärgårdens mest oförstörda öar, känd för äppelodlingar och tysta vikar.",
+    whatToDo:
+      "Cykla mellan Berg och Långvik, bada vid Bredvik, besök bryggeriet och fika i hamnen.",
+    eatAndCoffee:
+      "Möja Krog & Bageri och Möja Bryggeri.",
+    bestSeason: "Juni–augusti.",
+    image: "https://picsum.photos/seed/moja/800/600",
+  },
+  {
+    id: "orno",
+    name: "Ornö",
+    category: "Skärgårdsö",
+    description:
+      "Söderskärgårdens största ö med ekoturism, gårdsbutiker och milslånga cykel- och vandringsleder.",
+    travelTime: "ca 1,5 h med buss och båt",
+    travelMinutes: 90,
+    distanceRange: "60-120",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Lugn & vacker", "Aktiv", "Budgetvänlig", "Fotovänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Hundvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: false,
+    publicTransport: true,
+    island: true,
+    costLevel: 1,
+    duration: "Heldag",
+    bestFor: ["Cykling", "Gårdsbutiker", "Vandring i naturreservat"],
+    howToGetThere:
+      "Pendel till Västerhaninge + buss 846 till Sandviken, sedan båt till Ornö, totalt ca 1,5 h.",
+    goodToKnow:
+      "Stora delar av ön är naturreservat — bra skyltade leder för både vandring och cykel.",
+    whyGo:
+      "Ekologisk skärgårdskänsla med gårdsbutiker, lammbete och milsvida leder utan trängsel.",
+    whatToDo:
+      "Cykla eller vandra Ornöleden, besök gårdsbutikerna och bada vid någon av de många vikarna.",
+    eatAndCoffee:
+      "Ornö Skärgårdskrog och flera gårdsbutiker med eget bröd och ost.",
+    bestSeason: "Juni–september.",
+    image: "https://picsum.photos/seed/orno/800/600",
+  },
+  {
+    id: "dalaro",
+    name: "Dalarö",
+    category: "Småstad / by",
+    description:
+      "Pittoresk skärgårdsidyll med fästningsruin, segelbåtshamn och böljande klippor mot öppet hav.",
+    travelTime: "ca 50 min med bil",
+    travelMinutes: 50,
+    distanceRange: "30-60",
+    indoorOutdoor: "Både och",
+    moodTags: ["Mysig", "Romantisk", "Solig dag", "Fotovänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 2,
+    duration: "Halvdag",
+    bestFor: ["Fästningsruin", "Hamnpromenad", "Klippbad"],
+    howToGetThere:
+      "Bil ca 50 min via Nynäsvägen, eller buss 848/849 från Västerhaninge.",
+    goodToKnow:
+      "Dalarö skans nås med liten roddfärja från hamnen — kolla turerna.",
+    whyGo:
+      "Skärgårdsstämning på fastlandet, med en av Stockholms vackraste små hamnar.",
+    whatToDo:
+      "Besök Dalarö skans, strosa bland sjöbodarna, bada vid Pålbobadet och fika i hamnen.",
+    eatAndCoffee:
+      "Dalarö Skeppshandel och Hamnkrogen för fika och fisk.",
+    bestSeason: "Maj–september.",
+    image: "https://picsum.photos/seed/dalaro/800/600",
+  },
+  {
+    id: "trosa",
+    name: "Trosa",
+    category: "Småstad / by",
+    description:
+      "Sörmlands minsta stad — färgglada trähus, å-promenad och en av länets mysigaste hamnar.",
+    travelTime: "ca 1 h 10 min med bil",
+    travelMinutes: 70,
+    distanceRange: "60-120",
+    indoorOutdoor: "Både och",
+    moodTags: ["Mysig", "Romantisk", "Fotovänlig", "Solig dag"],
+    practicalTags: ["Mat finns", "Café i närheten", "Bra på sommaren"],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: false,
+    island: false,
+    costLevel: 2,
+    duration: "Halvdag",
+    bestFor: ["Promenad längs ån", "Hamnliv", "Bad vid Tureholm"],
+    howToGetThere:
+      "Bil ca 1 h 10 min via E4. Ingen direkt tågförbindelse — buss går via Vagnhärad.",
+    goodToKnow:
+      "Sommartid är hamnen full av segelbåtar och uteserveringar — boka bord i förväg på helger.",
+    whyGo:
+      "Sveriges minsta stad med största charmen, perfekt för en lugn dag med fika och promenader.",
+    whatToDo:
+      "Strosa längs Trosaån, handla i de gamla trähusen, bada vid Tureholms slott och avsluta med fiskmiddag i hamnen.",
+    eatAndCoffee:
+      "Trosa Stadshotell och flera kaféer i de gamla magasinen.",
+    bestSeason: "Maj–september.",
+    image: "https://picsum.photos/seed/trosa/800/600",
+  },
+  {
+    id: "norrtalje",
+    name: "Norrtälje",
+    category: "Småstad / by",
+    description:
+      "Roslagens huvudstad med charmig stadskärna, hamnpromenad och porten till norra skärgården.",
+    travelTime: "ca 1 h med bil eller buss",
+    travelMinutes: 60,
+    distanceRange: "60-120",
+    indoorOutdoor: "Både och",
+    moodTags: ["Mysig", "Fotovänlig", "Budgetvänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Barnvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 1,
+    duration: "Halvdag",
+    bestFor: ["Stadspromenad", "Hamnliv", "Utgångspunkt för norra skärgården"],
+    howToGetThere:
+      "Buss 676 från Tekniska högskolan, ca 1 h. Bil samma restid via E18.",
+    goodToKnow:
+      "Bra utgångspunkt för vidare båtresor till öar som Blidö och Arholma.",
+    whyGo:
+      "En riktig småstad med levande hamn, gammal träbebyggelse och närhet till norra skärgårdens öar.",
+    whatToDo:
+      "Vandra längs hamnen, besök Roslagsmuseet, handla på torget och avsluta med glass vid kanalen.",
+    eatAndCoffee:
+      "Lilla Tobago och flera kaféer kring Societetsparken.",
+    bestSeason: "Maj–september.",
+    image: "https://picsum.photos/seed/norrtalje/800/600",
+  },
+  {
+    id: "nynashamn",
+    name: "Nynäshamn",
+    category: "Småstad / by",
+    description:
+      "Sörmlands kuststad med klippbad, fiskhamn och färjeläge mot Gotland och södra skärgården.",
+    travelTime: "ca 50 min med pendeltåg",
+    travelMinutes: 50,
+    distanceRange: "30-60",
+    indoorOutdoor: "Både och",
+    moodTags: ["Mysig", "Aktiv", "Solig dag", "Budgetvänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 1,
+    duration: "Halvdag",
+    bestFor: ["Klippbad vid Nickstabadet", "Fiskhamnen", "Utgångspunkt för Utö/Landsort"],
+    howToGetThere:
+      "Pendeltåg direkt till Nynäshamn, ca 50 min från city.",
+    goodToKnow:
+      "Bra startpunkt för dagsutflykt vidare till Utö eller fyren Landsort.",
+    whyGo:
+      "Enkel kollektivtrafik, fina klippbad och en levande fiskhamn — utan att behöva ta bil eller boka båt i förväg.",
+    whatToDo:
+      "Bada vid Nickstabadet, handla färsk fisk i hamnen och vandra ut mot Stora Vika.",
+    eatAndCoffee:
+      "Nynäshamns Fisk & Skaldjur och flera kaféer i hamnen.",
+    bestSeason: "Maj–september.",
+    image: "https://picsum.photos/seed/nynashamn/800/600",
+  },
+  {
+    id: "gustavsberg",
+    name: "Gustavsberg",
+    category: "Kultur",
+    description:
+      "Gammal porslinsfabriksort i Värmdö, idag konsthall, designbutiker och hamnpromenad.",
+    travelTime: "ca 35 min med buss",
+    travelMinutes: 35,
+    distanceRange: "30-60",
+    indoorOutdoor: "Både och",
+    moodTags: ["Mysig", "Fotovänlig", "Budgetvänlig"],
+    practicalTags: [
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Bra på vintern",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Året runt"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 1,
+    duration: "1-2 timmar",
+    bestFor: ["Porslinsmuseet", "Konsthallen", "Designshopping"],
+    howToGetThere:
+      "Buss 474 från Slussen till Gustavsbergs centrum, ca 35 min.",
+    goodToKnow:
+      "Porslinsfabrikens gamla lokaler hyser idag både museum, konsthall och outlet-butiker.",
+    whyGo:
+      "Svensk designhistoria mitt i en levande hamnmiljö, lagom långt från stan för en kort utflykt.",
+    whatToDo:
+      "Besök Konsthallen och Porslinsmuseet, fynda i outleten och promenera längs Farstaviken.",
+    eatAndCoffee:
+      "Hamncaféet och flera lunchställen i gamla fabriksbyggnaden.",
+    bestSeason: "Året runt.",
+    image: "https://picsum.photos/seed/gustavsberg/800/600",
+  },
+  {
+    id: "langholmen",
+    name: "Långholmen",
+    category: "Badplats",
+    description:
+      "Grönskande ö mitt i stan med klippbad, gammalt fängelse och fina solnedgångar över Riddarfjärden.",
+    travelTime: "ca 15 min med tunnelbana",
+    travelMinutes: 15,
+    distanceRange: "0-30",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Lugn & vacker", "Solig dag", "Budgetvänlig", "Fotovänlig"],
+    practicalTags: [
+      "Utomhus",
+      "Lätt med kollektivtrafik",
+      "Mat finns",
+      "Café i närheten",
+      "Hundvänligt",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Sommar"],
+    foodAvailable: true,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: true,
+    costLevel: 1,
+    duration: "1-2 timmar",
+    bestFor: ["Klippbad", "Solnedgång", "Picknick"],
+    howToGetThere:
+      "Tunnelbana till Hornstull, sedan kort promenad över bron, totalt ca 15 min.",
+    goodToKnow:
+      "Populärt bland stockholmare på sommarkvällar — kom tidigt för bästa klippan.",
+    whyGo:
+      "Stadsnära skärgårdskänsla utan att lämna tunnelbanans räckhåll.",
+    whatToDo:
+      "Bada från klipporna, vandra runt ön förbi gamla fängelsemuren och avsluta med solnedgång vid Pålsundet.",
+    eatAndCoffee:
+      "Långholmens Wärdshus och flera kiosker längs vattnet.",
+    bestSeason: "Juni–augusti.",
+    image: "https://picsum.photos/seed/langholmen/800/600",
+  },
+  {
+    id: "monteliusvagen",
+    name: "Monteliusvägen",
+    category: "Utsiktsplats",
+    description:
+      "Stockholms mest fotograferade utsiktsstig längs Söders höjder, med vy över Riddarfjärden och Stadshuset.",
+    travelTime: "ca 10 min med tunnelbana",
+    travelMinutes: 10,
+    distanceRange: "0-30",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Romantisk", "Fotovänlig", "Lugn & vacker", "Solig dag"],
+    practicalTags: [
+      "Utomhus",
+      "Lätt med kollektivtrafik",
+      "Café i närheten",
+      "Bra på sommaren",
+    ],
+    seasonTags: ["Året runt"],
+    foodAvailable: false,
+    cafeAvailable: true,
+    publicTransport: true,
+    island: false,
+    costLevel: 1,
+    duration: "1-2 timmar",
+    bestFor: ["Solnedgång", "Fotografering", "Kvällspromenad"],
+    howToGetThere:
+      "Tunnelbana till Mariatorget eller Slussen, sedan kort promenad upp, totalt ca 10 min.",
+    goodToKnow:
+      "Som mest magisk i samband med solnedgång — populärt, så kom gärna i god tid.",
+    whyGo:
+      "En av de bästa gratisvyerna i stan, mitt i city men ändå overkligt vacker.",
+    whatToDo:
+      "Promenera hela stigen från Mariatorget till Fjällgatan, stanna vid bänkarna för utsikten och avsluta vid Fåfängan.",
+    eatAndCoffee:
+      "Flera kaféer vid Mariatorget i ena änden av promenaden.",
+    bestSeason: "Året runt, men sommarkvällar är magiska.",
+    image: "https://picsum.photos/seed/monteliusvagen/800/600",
+  },
+  {
+    id: "bogesund",
+    name: "Bogesund naturreservat",
+    category: "Vandringsled",
+    description:
+      "Vidsträckt naturreservat utanför Vaxholm med ekhagar, vandringsleder och utsikt över Vaxholms fästning.",
+    travelTime: "ca 40 min med bil",
+    travelMinutes: 40,
+    distanceRange: "30-60",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Lugn & vacker", "Aktiv", "Budgetvänlig", "Fotovänlig"],
+    practicalTags: ["Utomhus", "Hundvänligt", "Barnvänligt", "Bra på sommaren"],
+    seasonTags: ["Vår", "Sommar", "Höst"],
+    foodAvailable: false,
+    cafeAvailable: false,
+    publicTransport: false,
+    island: false,
+    costLevel: 1,
+    duration: "Halvdag",
+    bestFor: ["Vandring", "Ekhagar med kor och får", "Utsikt över Vaxholm"],
+    howToGetThere:
+      "Bil ca 40 min via Norrtäljevägen mot Bogesund. Parkering vid Bogesunds slott.",
+    goodToKnow:
+      "Leden går delvis genom betesmark — håll hundar kopplade nära djuren.",
+    whyGo:
+      "Ett av Stockholms finaste naturreservat, med gammal ekskog och milsvid utsikt mot skärgården.",
+    whatToDo:
+      "Vandra Bogesundsleden, besök slottsruinen och njut av utsikten mot Vaxholms fästning.",
+    eatAndCoffee:
+      "Inget på plats — packa matsäck eller stanna till i Vaxholm efteråt.",
+    bestSeason: "Maj–oktober.",
+    image: "https://picsum.photos/seed/bogesund/800/600",
+  },
+  {
+    id: "skinnarviksberget",
+    name: "Skinnarviksberget",
+    category: "Utsiktsplats",
+    description:
+      "Söders högsta klipphäll med ett av stans bästa utsiktsställen, populär plats för picknick i solnedgången.",
+    travelTime: "ca 10 min med tunnelbana",
+    travelMinutes: 10,
+    distanceRange: "0-30",
+    indoorOutdoor: "Utomhus",
+    moodTags: ["Solig dag", "Fotovänlig", "Budgetvänlig", "Romantisk"],
+    practicalTags: ["Utomhus", "Lätt med kollektivtrafik", "Bra på sommaren"],
+    seasonTags: ["Sommar"],
+    foodAvailable: false,
+    cafeAvailable: false,
+    publicTransport: true,
+    island: false,
+    costLevel: 1,
+    duration: "1-2 timmar",
+    bestFor: ["Picknick", "Solnedgång", "Klippsolande"],
+    howToGetThere:
+      "Tunnelbana till Hornstull, sedan ca 10 min promenad upp på berget.",
+    goodToKnow:
+      "Populärt bland stockholmare sommartid — ta med eget fika, inget finns att köpa på plats.",
+    whyGo:
+      "Gratis utsikt i klass med betydligt dyrare ställen, mitt i stan.",
+    whatToDo:
+      "Klättra upp på klipporna, ha picknick och titta på solen gå ner över Riddarfjärden.",
+    eatAndCoffee:
+      "Inget på plats — närmaste kafé finns nere vid Hornstull.",
+    bestSeason: "Maj–augusti.",
+    image: "https://picsum.photos/seed/skinnarviksberget/800/600",
+  },
 ];
