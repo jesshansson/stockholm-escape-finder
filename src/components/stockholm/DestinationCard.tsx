@@ -98,6 +98,11 @@ export function DestinationCard({
         <div className="absolute top-3 right-3" onClick={(e) => e.stopPropagation()}>
           <SaveButton saved={saved} onClick={onToggleSave} />
         </div>
+        {d.imageCredit && (
+          <span className="absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/45 text-white text-[9px] font-medium tracking-wide backdrop-blur-sm">
+            Foto: {d.imageCredit.author} / {d.imageCredit.source}
+          </span>
+        )}
       </button>
       <div className="p-5 flex flex-col">
         <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-muted/70 mb-1.5">
