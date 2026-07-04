@@ -48,6 +48,12 @@ export function DestinationSheet({
                     : "bg-surface/95 backdrop-blur text-ink ring-black/5 hover:bg-ink-soft",
                 ].join(" ")}
               >
+                {saved ? (
+                  <BookmarkCheck className="size-4" />
+                ) : (
+                  <Bookmark className="size-4" />
+                )}
+              </button>
               {d.imageCredit && (
                 <div className="absolute bottom-3 left-4 right-4 flex justify-start">
                   <span className="px-2 py-1 rounded bg-black/50 text-white text-[10px] leading-tight backdrop-blur-sm">
