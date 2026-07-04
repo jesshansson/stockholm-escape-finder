@@ -762,7 +762,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Skansens många kaféer, bland annat Bredablick för utsikt med fikat.",
     bestSeason: "Året runt, men sommarens hantverksdagar och julmarknaden i december är extra populära.",
-    image: "https://picsum.photos/seed/skansen/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Skansen%2C_Stockholm_%28by_Pudelek%29_1.JPG/1280px-Skansen%2C_Stockholm_%28by_Pudelek%29_1.JPG",
+    imageCredit: {
+      author: "Pudelek",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Skansen,_Stockholm_(by_Pudelek)_1.JPG",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "vasamuseet",
@@ -802,7 +809,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Museets eget café, eller gå vidare till Wärdshuset på Djurgården.",
     bestSeason: "Året runt — perfekt för regniga dagar.",
-    image: "https://picsum.photos/seed/vasamuseet/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Exterior_of_Vasa_22.JPG/1280px-Exterior_of_Vasa_22.JPG",
+    imageCredit: {
+      author: "Jonathan Cardy",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Exterior_of_Vasa_22.JPG",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "skogskyrkogarden",
@@ -835,7 +849,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Inget på plats — närmaste fik finns vid Enskede gård.",
     bestSeason: "Vår och höst när ljuset faller lågt genom tallarna.",
-    image: "https://picsum.photos/seed/skogskyrkogarden/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Skogskyrkog%C3%A5rden_June_2024_01.jpg/1280px-Skogskyrkog%C3%A5rden_June_2024_01.jpg",
+    imageCredit: {
+      author: "ArildV",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Skogskyrkog%C3%A5rden_June_2024_01.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "waldemarsudde",
@@ -872,7 +893,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Waldemarsuddes café i det gamla växthuset.",
     bestSeason: "Maj–september när trädgården blommar som mest.",
-    image: "https://picsum.photos/seed/waldemarsudde/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Waldemarsudde_February_2016_05.jpg/1280px-Waldemarsudde_February_2016_05.jpg",
+    imageCredit: {
+      author: "Arild Vågen",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Waldemarsudde_February_2016_05.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "thielska-galleriet",
@@ -905,7 +933,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Trädgårdscaféet, öppet under högsäsong.",
     bestSeason: "Vår till höst, för trädgården och utsikten.",
-    image: "https://picsum.photos/seed/thielska-galleriet/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Thielska_galleriet_2007_1.jpg/1280px-Thielska_galleriet_2007_1.jpg",
+    imageCredit: {
+      author: "Holger Ellgaard",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Thielska_galleriet_2007_1.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "hagaparken",
@@ -945,7 +980,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Haga Forum och flera kaféer längs strandpromenaden.",
     bestSeason: "Året runt — extra fint på våren när körsbärsträden blommar.",
-    image: "https://picsum.photos/seed/hagaparken/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Kinesiska_paviljongen%2C_Hagaparken.jpg/1280px-Kinesiska_paviljongen%2C_Hagaparken.jpg",
+    imageCredit: {
+      author: "Frankie Fouganthin",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Kinesiska_paviljongen,_Hagaparken.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "skokloster-slott",
@@ -978,7 +1020,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Slottscaféet i den gamla ladugården.",
     bestSeason: "Maj–september.",
-    image: "https://picsum.photos/seed/skokloster-slott/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Skokloster_castle_%28by_Pudelek%29_2.JPG/1280px-Skokloster_castle_%28by_Pudelek%29_2.JPG",
+    imageCredit: {
+      author: "Pudelek",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Skokloster_castle_(by_Pudelek)_2.JPG",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "steninge-slott",
@@ -1016,7 +1065,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Steninge Slottscafé och restaurang i orangeriet.",
     bestSeason: "Maj–september.",
-    image: "https://picsum.photos/seed/steninge-slott/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Steninge_Palace_nov_2011_nr1_Publish.jpg/1280px-Steninge_Palace_nov_2011_nr1_Publish.jpg",
+    imageCredit: {
+      author: "Brorsson",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Steninge_Palace_nov_2011_nr1_Publish.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "rosersberg-slott",
@@ -1049,7 +1105,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Inget café på plats — ta med matsäck eller stanna till i Märsta på vägen.",
     bestSeason: "Maj–september.",
-    image: "https://picsum.photos/seed/rosersberg-slott/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Rosersberg_Palace.jpg/1280px-Rosersberg_Palace.jpg",
+    imageCredit: {
+      author: "Brorsson",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Rosersberg_Palace.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "moja",
@@ -1087,7 +1150,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Möja Krog & Bageri och Möja Bryggeri.",
     bestSeason: "Juni–augusti.",
-    image: "https://picsum.photos/seed/moja/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Bergs_brygga%2C_M%C3%B6ja.jpg/1280px-Bergs_brygga%2C_M%C3%B6ja.jpg",
+    imageCredit: {
+      author: "Esquilo",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Bergs_brygga,_M%C3%B6ja.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "orno",
@@ -1125,7 +1195,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Ornö Skärgårdskrog och flera gårdsbutiker med eget bröd och ost.",
     bestSeason: "Juni–september.",
-    image: "https://picsum.photos/seed/orno/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Orn%C3%B6_kyrka_August_2015.jpg/1280px-Orn%C3%B6_kyrka_August_2015.jpg",
+    imageCredit: {
+      author: "Arild Vågen",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Orn%C3%B6_kyrka_August_2015.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "dalaro",
@@ -1163,7 +1240,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Dalarö Skeppshandel och Hamnkrogen för fika och fisk.",
     bestSeason: "Maj–september.",
-    image: "https://picsum.photos/seed/dalaro/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Dalar%C3%B6_Skans4.jpg/1280px-Dalar%C3%B6_Skans4.jpg",
+    imageCredit: {
+      author: "Esquilo",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Dalar%C3%B6_Skans4.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "trosa",
@@ -1196,7 +1280,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Trosa Stadshotell och flera kaféer i de gamla magasinen.",
     bestSeason: "Maj–september.",
-    image: "https://picsum.photos/seed/trosa/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Trosa_former_town_hall2.jpg/1280px-Trosa_former_town_hall2.jpg",
+    imageCredit: {
+      author: "Sinikka Halme",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Trosa_former_town_hall2.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "norrtalje",
@@ -1235,7 +1326,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Lilla Tobago och flera kaféer kring Societetsparken.",
     bestSeason: "Maj–september.",
-    image: "https://picsum.photos/seed/norrtalje/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Norrt%C3%A4lje%C3%A5n_January_2012b.jpg/1280px-Norrt%C3%A4lje%C3%A5n_January_2012b.jpg",
+    imageCredit: {
+      author: "ArildV",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Norrt%C3%A4lje%C3%A5n_January_2012b.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
   {
     id: "nynashamn",
@@ -1273,7 +1371,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Nynäshamns Fisk & Skaldjur och flera kaféer i hamnen.",
     bestSeason: "Maj–september.",
-    image: "https://picsum.photos/seed/nynashamn/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Nyn%C3%A4shamns_hamn%2C_2017a.jpg/1280px-Nyn%C3%A4shamns_hamn%2C_2017a.jpg",
+    imageCredit: {
+      author: "Holger.Ellgaard",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Nyn%C3%A4shamns_hamn,_2017a.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "gustavsberg",
@@ -1312,7 +1417,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Hamncaféet och flera lunchställen i gamla fabriksbyggnaden.",
     bestSeason: "Året runt.",
-    image: "https://picsum.photos/seed/gustavsberg/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Gustavsberg%2C_maj_2018.jpg/1280px-Gustavsberg%2C_maj_2018.jpg",
+    imageCredit: {
+      author: "Holger.Ellgaard",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Gustavsberg,_maj_2018.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "langholmen",
@@ -1352,7 +1464,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Långholmens Wärdshus och flera kiosker längs vattnet.",
     bestSeason: "Juni–augusti.",
-    image: "https://picsum.photos/seed/langholmen/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/L%C3%A5ngholmen_September_2014.jpg/1280px-L%C3%A5ngholmen_September_2014.jpg",
+    imageCredit: {
+      author: "Arild Vågen",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:L%C3%A5ngholmen_September_2014.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "monteliusvagen",
@@ -1390,7 +1509,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Flera kaféer vid Mariatorget i ena änden av promenaden.",
     bestSeason: "Året runt, men sommarkvällar är magiska.",
-    image: "https://picsum.photos/seed/monteliusvagen/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Stockholm%2C_view_from_Monteliusv%C3%A4gen%2C_2019-07-28.jpg/1280px-Stockholm%2C_view_from_Monteliusv%C3%A4gen%2C_2019-07-28.jpg",
+    imageCredit: {
+      author: "Alexey Komarov",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Stockholm,_view_from_Monteliusv%C3%A4gen,_2019-07-28.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "bogesund",
@@ -1423,7 +1549,14 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Inget på plats — packa matsäck eller stanna till i Vaxholm efteråt.",
     bestSeason: "Maj–oktober.",
-    image: "https://picsum.photos/seed/bogesund/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bogesunds_slott_2017_04.jpg/1280px-Bogesunds_slott_2017_04.jpg",
+    imageCredit: {
+      author: "Jopparn",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Bogesunds_slott_2017_04.jpg",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    },
   },
   {
     id: "skinnarviksberget",
@@ -1456,6 +1589,13 @@ export const localDestinations: Destination[] = [
     eatAndCoffee:
       "Inget på plats — närmaste kafé finns nere vid Hornstull.",
     bestSeason: "Maj–augusti.",
-    image: "https://picsum.photos/seed/skinnarviksberget/800/600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Skinnarviksberget_2008b.jpg/1280px-Skinnarviksberget_2008b.jpg",
+    imageCredit: {
+      author: "Holger.Ellgaard",
+      source: "Wikimedia Commons",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Skinnarviksberget_2008b.jpg",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    },
   },
 ];
