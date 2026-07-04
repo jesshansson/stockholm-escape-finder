@@ -48,12 +48,36 @@ export function DestinationSheet({
                     : "bg-surface/95 backdrop-blur text-ink ring-black/5 hover:bg-ink-soft",
                 ].join(" ")}
               >
-                {saved ? (
-                  <BookmarkCheck className="size-4" />
-                ) : (
-                  <Bookmark className="size-4" />
-                )}
-              </button>
+              {d.imageCredit && (
+                <div className="absolute bottom-3 left-4 right-4 flex justify-start">
+                  <span className="px-2 py-1 rounded bg-black/50 text-white text-[10px] leading-tight backdrop-blur-sm">
+                    Foto:{" "}
+                    <a
+                      href={d.imageCredit.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 hover:text-white/90"
+                    >
+                      {d.imageCredit.author}
+                    </a>
+                    {" / "}
+                    {d.imageCredit.source}
+                    {" · "}
+                    {d.imageCredit.licenseUrl ? (
+                      <a
+                        href={d.imageCredit.licenseUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-2 hover:text-white/90"
+                      >
+                        {d.imageCredit.license}
+                      </a>
+                    ) : (
+                      d.imageCredit.license
+                    )}
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className="p-7 sm:p-9">
