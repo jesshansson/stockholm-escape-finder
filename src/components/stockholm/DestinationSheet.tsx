@@ -4,7 +4,9 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Bookmark, BookmarkCheck, Clock, MapPin } from "lucide-react";
+import { Bookmark, BookmarkCheck, Clock, Map as MapIcon, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { destinationCoordinates } from "@/data/coordinates";
 import type { Destination } from "@/data/types";
 
 type Props = {
