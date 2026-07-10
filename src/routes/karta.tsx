@@ -1,5 +1,6 @@
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 
 import { SiteHeader } from "@/components/stockholm/SiteHeader";
 import { DestinationMap } from "@/components/stockholm/DestinationMap";
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/karta")({
       },
     ],
   }),
+  validateSearch: z.object({ d: z.string().optional() }),
   component: MapPage,
 });
 
@@ -44,9 +46,15 @@ function MapPage() {
 }
 
 function MapView() {
+  const { d: initialId } = Route.useSearch();
   const { data: destinations } = useDestinations();
   const { savedIds, toggle, remove, isSaved } = useSavedTrips();
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(initialId ?? null);
+
+  useEffect(() => {
+    if (initialId) setActiveId(initialId);
+  }, [initialId]);
+
   const [savedOpen, setSavedOpen] = useState(false);
 
   const mapped = destinations.filter((d) => destinationCoordinates[d.id]);

@@ -4,7 +4,9 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Bookmark, BookmarkCheck, Clock, MapPin } from "lucide-react";
+import { Bookmark, BookmarkCheck, Clock, Map as MapIcon, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { destinationCoordinates } from "@/data/coordinates";
 import type { Destination } from "@/data/types";
 
 type Props = {
@@ -133,17 +135,30 @@ export function DestinationSheet({
                 </div>
               </div>
 
-              <button
-                onClick={onToggleSave}
-                className={[
-                  "mt-9 w-full py-3 rounded-full text-sm font-medium transition-colors",
-                  saved
-                    ? "bg-ink-soft text-ink ring-1 ring-black/5"
-                    : "bg-moss text-white",
-                ].join(" ")}
-              >
-                {saved ? "Sparad i dina utflykter" : "Spara den här utflykten"}
-              </button>
+              <div className="mt-9 flex flex-col sm:flex-row gap-2">
+                <button
+                  onClick={onToggleSave}
+                  className={[
+                    "flex-1 py-3 rounded-full text-sm font-medium transition-colors",
+                    saved
+                      ? "bg-ink-soft text-ink ring-1 ring-black/5"
+                      : "bg-moss text-white",
+                  ].join(" ")}
+                >
+                  {saved ? "Sparad i dina utflykter" : "Spara den här utflykten"}
+                </button>
+                {destinationCoordinates[d.id] && (
+                  <Link
+                    to="/karta"
+                    search={{ d: d.id }}
+                    onClick={() => onOpenChange(false)}
+                    className="flex-1 py-3 rounded-full text-sm font-medium transition-colors bg-surface text-ink ring-1 ring-black/5 hover:bg-ink-soft inline-flex items-center justify-center gap-2"
+                  >
+                    <MapIcon className="size-4" />
+                    Visa på karta
+                  </Link>
+                )}
+              </div>
             </div>
           </>
         )}
