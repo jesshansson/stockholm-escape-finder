@@ -27,6 +27,7 @@ export const Route = createFileRoute("/karta")({
       },
     ],
   }),
+  validateSearch: z.object({ d: z.string().optional() }),
   component: MapPage,
 });
 
