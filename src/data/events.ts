@@ -20,6 +20,8 @@ export type StockholmEvent = {
   time: string;
   description: string;
   priceLabel: string;
+  /** True when the event description/title indicates free admission */
+  isFree: boolean;
   /** ISO date (YYYY-MM-DD) in Europe/Stockholm */
   date: string;
   /** URL to the event's official page / ticket site */
@@ -121,6 +123,25 @@ function truncate(text: string, max: number): string {
   return text.slice(0, max).trimEnd().replace(/\s+\S*$/, "") + "…";
 }
 
+const FREE_KEYWORDS = [
+  "gratis",
+  "fri entré",
+  "fri entre",
+  "free admission",
+  "free entry",
+  "kostnadsfri",
+  "kostnadsfritt",
+  "fritt inträde",
+  "fritt intrade",
+  "ingen avgift",
+  "free of charge",
+];
+
+function detectFree(title: string, description: string): boolean {
+  const text = `${title} ${description}`.toLowerCase();
+  return FREE_KEYWORDS.some((keyword) => text.includes(keyword));
+}
+
 export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] {
   const occurrences: StockholmEvent[] = [];
 
@@ -152,6 +173,8 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
             },
           ];
 
+    const isFree = detectFree(title, description);
+
     for (const slot of scheduleDates) {
       if (!slot.date) continue;
       const time = formatTime(slot.start_time, slot.end_time);
@@ -163,7 +186,8 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
         neighborhood,
         time,
         description: truncate(description, 220),
-        priceLabel: "Prisinfo på hemsidan",
+        priceLabel: isFree ? "Gratis" : "Prisinfo på hemsidan",
+        isFree,
         date: slot.date,
         url: event.external_website_url || event.url,
       });

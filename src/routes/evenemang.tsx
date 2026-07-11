@@ -116,6 +116,7 @@ function EventsPage() {
 
   const [selectedDate, setSelectedDate] = useState<Date>(() => new Date());
   const [activeCats, setActiveCats] = useState<EventCategory[]>([]);
+  const [freeOnly, setFreeOnly] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
 
   const dayEvents = useMemo<StockholmEvent[]>(() => {
@@ -125,10 +126,11 @@ function EventsPage() {
         (e: StockholmEvent) =>
           activeCats.length === 0 || activeCats.includes(e.category),
       )
+      .filter((e: StockholmEvent) => !freeOnly || e.isFree)
       .sort((a: StockholmEvent, b: StockholmEvent) =>
         a.time.localeCompare(b.time),
       );
-  }, [events, selectedDate, activeCats]);
+  }, [events, selectedDate, activeCats, freeOnly]);
 
   const isToday = isSameDay(selectedDate, new Date());
 
@@ -207,6 +209,17 @@ function EventsPage() {
       </section>
 
       <section className="px-5 sm:px-12 mb-8 flex flex-wrap gap-2">
+        <button
+          onClick={() => setFreeOnly((v) => !v)}
+          className={cn(
+            "px-3 py-1.5 rounded-full text-xs ring-1 transition-colors",
+            freeOnly
+              ? "bg-moss text-white ring-moss"
+              : "bg-surface text-ink-muted ring-black/5 hover:bg-ink-soft",
+          )}
+        >
+          Gratis
+        </button>
         {ALL_CATEGORIES.map((c) => {
           const active = activeCats.includes(c);
           return (
@@ -241,12 +254,14 @@ function EventsPage() {
               Inga evenemang hittades
             </h3>
             <p className="text-sm text-ink-muted mb-6">
-              Prova en annan dag eller ta bort några kategorier.
+              Prova en annan dag, ta bort några kategorier eller slå av
+              Gratis-filtret.
             </p>
             <button
               onClick={() => {
                 setSelectedDate(new Date());
                 setActiveCats([]);
+                setFreeOnly(false);
               }}
               className="px-5 py-2.5 bg-moss text-white rounded-full text-sm font-medium"
             >
