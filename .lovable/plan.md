@@ -1,50 +1,42 @@
+Mål: Ersätta de påhittade mock-evenemangen på `/evenemang` med riktiga evenemang från Visit Stockholms öppna API (`https://api.visitstockholm.com/api/public-v1/events/`). Sidan ska fortfarande öppnas på dagens datum, och användaren ska kunna välja dag i kalendern.
 
-# Riktiga bilder + attribution för destinationerna
+## Vad jag bygger
 
-Kombinerar A och B: vi lägger till stöd för bildkreditering i datamodellen *och* fyller på med riktiga bild-URL:er från Wikimedia Commons / Unsplash för alla destinationer.
+1. **Serverfunktion för evenemangshämtning**
+   - Skapa `src/lib/events.functions.ts` med en `createServerFn({ method: "GET" })` som hämtar alla evenemang från Visit Stockholm (`?size=1000`, just nu ~774 st).
+   - Mappa API:ns fält till appens befintliga `StockholmEvent`-typ:
+     - `title.sv` → `title`
+     - `description.sv` → `description`
+     - `venue_name` + `city`/`address` → `venue` + `neighborhood`
+     - `schedule.dates[]` används för att avgöra vilken tid evenemanget har på vald dag
+     - API-kategorier (t.ex. `music`, `stage-film`, `eat-drink`, `family`, `sports`, `fairs`, `exhibitions`, `clubs-parties`) mappas till appens svenska kategorier.
+   - Vid fel returneras ett tomt resultat med ett fallback-meddelande, så sidan aldrig kraschar.
 
-Detta är rätt väg eftersom Wikimedia kräver attribution — vi måste ändå ha ett fält för det, och då kan vi lika gärna fylla i data samtidigt.
+2. **Uppdatera data-modellen**
+   - I `src/data/events.ts` behålls `EventCategory`, `StockholmEvent` och kategorilistan.
+   - Mock-seed-listan tas bort och ersätts av en mappningsfunktion som serverfunktionen använder.
+   - Eventuellt läggs en liten hjälpfunktion till för att hitta rätt tidslucka för ett specifikt datum.
 
-## Vad som byggs
+3. **Refaktorera `/evenemang`-sidan**
+   - Byt från statisk import av `events` till TanStack Query-mönstret: `loader` med `context.queryClient.ensureQueryData(...)` + `useSuspenseQuery(...)`.
+   - Filtreringen efter vald dag sker mot de rika datumen i `schedule.dates` (flerdagars-evenemang syns på varje dag de pågår).
+   - Varje evenemangskort får en tydlig extern länk till arrangörens/biljettsida (`external_website_url`).
+   - Lägg till `errorComponent` och `notFoundComponent` på routen.
+   - Behåll dagens datum som förval och kategorifiltreringen som den är.
 
-### 1. Utöka datamodellen
-I `src/data/types.ts`, lägg till på `Destination`:
-```ts
-imageCredit?: {
-  author: string;      // t.ex. "Arild Vågen"
-  source: "Wikimedia Commons" | "Unsplash" | "Pexels" | "Flickr" | "Egen";
-  sourceUrl: string;   // länk till originalsidan
-  license: string;     // t.ex. "CC BY-SA 4.0", "Unsplash License"
-  licenseUrl?: string; // valfri länk till licenstext
-};
-```
-Fältet är valfritt så inget kraschar under tiden vi fyller på.
+4. **Attribution**
+   - Lägg till en diskret textrad längst ner: “Evenemang från Visit Stockholm” med länk till `https://www.visitstockholm.se/` och en notis om CC BY 4.0-licens.
 
-### 2. Visa krediteringen diskret
-- **`DestinationCard.tsx`**: liten "Foto: Namn / Källa" i hörnet av bilden (10px, semitransparent).
-- **`DestinationSheet.tsx`**: en rad under huvudbilden med författare, licens och länk till källan (klickbar).
-- Om `imageCredit` saknas → ingen text visas.
+5. **Verifiering**
+   - Kör `tsgo` för att säkerställa att alla nya typer och mappningar är korrekta.
 
-### 3. Hämta bilder för alla ~19 destinationer
-För varje destination:
-- Sök Wikimedia Commons först (bäst för slott, öar, kyrkor, museer, historiska platser).
-- Faller tillbaka på Unsplash/Pexels för stämningsbilder där Wikimedia saknar bra motiv.
-- Använd direkta bildlänkar (Wikimedia: `upload.wikimedia.org/...`, Unsplash: `images.unsplash.com/...`).
-- Fyll i `image`-URL:en och `imageCredit`-blocket i `src/data/destinations.ts`.
+## Tekniska detaljer
 
-Jag använder web-search-subagents parallellt för att hitta lämpliga bilder per destination, verifierar att URL:erna svarar, och samlar allt i en enda edit av `destinations.ts`.
+- API:et kräver ingen API-nyckel och har CC BY 4.0-licens.
+- Eftersom API:et inte har ett dedikerat datumfilter hämtas alla evenemang på en gång och filtreras i appen.
+- Serverfunktionen körs på servern, så vi slipper CORS-problem i webbläsaren.
+- Tidigare användes `useState` för vald dag; det behålls i UI:t men datan laddas via serverfunktionen istället för statisk mock-data.
 
-### 4. Behåll picsum som fallback
-Om en destination inte får en bra riktig bild i första svepet behåller vi picsum-placeholdern så inget går sönder. Jag rapporterar vilka som ev. saknas så du kan välja bild manuellt sen.
+## Resultat
 
-## Filer som ändras
-- `src/data/types.ts` — nytt `imageCredit`-fält
-- `src/data/destinations.ts` — riktiga `image`-URL:er + `imageCredit` per post
-- `src/components/stockholm/DestinationCard.tsx` — liten fotokredit på kortet
-- `src/components/stockholm/DestinationSheet.tsx` — fotokredit under detaljbilden
-
-## Vad som INTE ändras
-- Ingen ny sida, inget nytt filter, ingen ändring i kartan/routing.
-- Inga AI-genererade bilder (alternativ C) — vi kör bara gratis riktiga foton.
-
-Klicka **Implementera plan** så sätter jag igång.
+`/evenemang` visar riktiga, aktuella evenemang i Stockholm. Användaren kan fortfarande välja dag och kategori, och varje evenemang leder vidare till arrangörens sida.
