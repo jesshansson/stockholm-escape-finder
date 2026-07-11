@@ -254,12 +254,14 @@ function EventsPage() {
               Inga evenemang hittades
             </h3>
             <p className="text-sm text-ink-muted mb-6">
-              Prova en annan dag eller ta bort några kategorier.
+              Prova en annan dag, ta bort några kategorier eller slå av
+              Gratis-filtret.
             </p>
             <button
               onClick={() => {
                 setSelectedDate(new Date());
                 setActiveCats([]);
+                setFreeOnly(false);
               }}
               className="px-5 py-2.5 bg-moss text-white rounded-full text-sm font-medium"
             >
