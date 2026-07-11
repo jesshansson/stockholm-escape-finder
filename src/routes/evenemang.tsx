@@ -116,6 +116,7 @@ function EventsPage() {
 
   const [selectedDate, setSelectedDate] = useState<Date>(() => new Date());
   const [activeCats, setActiveCats] = useState<EventCategory[]>([]);
+  const [freeOnly, setFreeOnly] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
 
   const dayEvents = useMemo<StockholmEvent[]>(() => {
@@ -125,10 +126,11 @@ function EventsPage() {
         (e: StockholmEvent) =>
           activeCats.length === 0 || activeCats.includes(e.category),
       )
+      .filter((e: StockholmEvent) => !freeOnly || e.isFree)
       .sort((a: StockholmEvent, b: StockholmEvent) =>
         a.time.localeCompare(b.time),
       );
-  }, [events, selectedDate, activeCats]);
+  }, [events, selectedDate, activeCats, freeOnly]);
 
   const isToday = isSameDay(selectedDate, new Date());
 
