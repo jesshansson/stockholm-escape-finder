@@ -173,6 +173,8 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
             },
           ];
 
+    const isFree = detectFree(title, description);
+
     for (const slot of scheduleDates) {
       if (!slot.date) continue;
       const time = formatTime(slot.start_time, slot.end_time);
@@ -184,7 +186,8 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
         neighborhood,
         time,
         description: truncate(description, 220),
-        priceLabel: "Prisinfo på hemsidan",
+        priceLabel: isFree ? "Gratis" : "Prisinfo på hemsidan",
+        isFree,
         date: slot.date,
         url: event.external_website_url || event.url,
       });
