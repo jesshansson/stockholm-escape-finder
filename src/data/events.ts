@@ -20,6 +20,8 @@ export type StockholmEvent = {
   time: string;
   description: string;
   priceLabel: string;
+  /** True when the event description/title indicates free admission */
+  isFree: boolean;
   /** ISO date (YYYY-MM-DD) in Europe/Stockholm */
   date: string;
   /** URL to the event's official page / ticket site */
