@@ -119,7 +119,7 @@ function EventsPage() {
   const [pickerOpen, setPickerOpen] = useState(false);
 
   const dayEvents = useMemo<StockholmEvent[]>(() => {
-    const filtered = events
+    return events
       .filter((e: StockholmEvent) => isSameDay(parseISO(e.date), selectedDate))
       .filter(
         (e: StockholmEvent) =>
@@ -128,9 +128,6 @@ function EventsPage() {
       .sort((a: StockholmEvent, b: StockholmEvent) =>
         a.time.localeCompare(b.time),
       );
-    // eslint-disable-next-line no-console
-    console.log("activeCats", activeCats, "dayEvents cats", filtered.map((e) => e.category));
-    return filtered;
   }, [events, selectedDate, activeCats]);
 
   const isToday = isSameDay(selectedDate, new Date());
