@@ -156,7 +156,7 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
       if (!slot.date) continue;
       const time = formatTime(slot.start_time, slot.end_time);
       occurrences.push({
-        id: `${event.id}--${slot.date}`,
+        id: `${event.id}--${slot.date}--${slot.start_time ?? "hel"}`,
         title,
         category,
         venue,
