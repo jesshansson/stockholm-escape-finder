@@ -1,4 +1,4 @@
-import { Bookmark, Map as MapIcon } from "lucide-react";
+import { Bookmark, Calendar as CalendarIcon, Map as MapIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 
@@ -34,6 +34,14 @@ export function SiteHeader({ onOpenSaved, savedCount }: Props) {
         >
           <MapIcon className="size-4" />
           <span>Karta</span>
+        </Link>
+        <Link
+          to="/evenemang"
+          activeProps={{ className: "text-moss bg-moss/10" }}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-ink-soft transition-colors text-ink-muted hover:text-ink"
+        >
+          <CalendarIcon className="size-4" />
+          <span>Evenemang</span>
         </Link>
         <button
           onClick={onOpenSaved}
