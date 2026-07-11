@@ -311,7 +311,7 @@ function EventsPage() {
                     rel="noopener noreferrer"
                     className="mt-2 inline-flex items-center gap-1.5 self-start rounded-full bg-moss/10 px-4 py-2 text-sm font-medium text-moss hover:bg-moss/20 transition-colors"
                   >
-                    Läs mer / biljetter
+                    Läs mer
                     <ExternalLink className="size-3.5" />
                   </a>
                 ) : null}
