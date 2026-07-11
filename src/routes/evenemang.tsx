@@ -1,8 +1,19 @@
 import { useMemo, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Link,
+  useRouter,
+} from "@tanstack/react-router";
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { format, isSameDay, parseISO } from "date-fns";
 import { sv } from "date-fns/locale";
-import { CalendarIcon, Clock, MapPin, Ticket } from "lucide-react";
+import {
+  CalendarIcon,
+  Clock,
+  ExternalLink,
+  MapPin,
+  Ticket,
+} from "lucide-react";
 
 import { SiteHeader } from "@/components/stockholm/SiteHeader";
 import { Button } from "@/components/ui/button";
@@ -13,19 +24,20 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { events, type EventCategory } from "@/data/events";
+import {
+  ALL_CATEGORIES,
+  EVENT_SOURCE_ATTRIBUTION,
+  type EventCategory,
+  type StockholmEvent,
+} from "@/data/events";
+import { fetchVisitStockholmEvents } from "@/lib/events.functions";
 import { useSavedTrips } from "@/lib/use-saved-trips";
 
-const ALL_CATEGORIES: EventCategory[] = [
-  "Musik",
-  "Konst",
-  "Mat & Dryck",
-  "Familj",
-  "Sport",
-  "Marknad",
-  "Scen",
-  "Uteliv",
-];
+const eventsQueryOptions = queryOptions({
+  queryKey: ["visit-stockholm-events"],
+  queryFn: () => fetchVisitStockholmEvents(),
+  staleTime: 5 * 60 * 1000,
+});
 
 export const Route = createFileRoute("/evenemang")({
   head: () => ({
@@ -44,21 +56,82 @@ export const Route = createFileRoute("/evenemang")({
       },
     ],
   }),
+  loader: ({ context }) =>
+    context.queryClient.ensureQueryData(eventsQueryOptions),
   component: EventsPage,
+  errorComponent: EventsError,
+  notFoundComponent: EventsNotFound,
 });
+
+function EventsError({ error, reset }: { error: Error; reset: () => void }) {
+  const router = useRouter();
+  return (
+    <main className="min-h-screen bg-sand text-ink">
+      <SiteHeader onOpenSaved={() => {}} savedCount={0} />
+      <div className="px-5 sm:px-12 pt-8 pb-32">
+        <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
+          <h2 className="text-xl font-medium text-ink mb-2">
+            Evenemangen kunde inte laddas
+          </h2>
+          <p className="text-sm text-ink-muted mb-6">
+            {error.message || "Något gick fel när vi hämtade evenemangen."}
+          </p>
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="px-5 py-2.5 bg-moss text-white rounded-full text-sm font-medium"
+          >
+            Försök igen
+          </button>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function EventsNotFound() {
+  return (
+    <main className="min-h-screen bg-sand text-ink">
+      <SiteHeader onOpenSaved={() => {}} savedCount={0} />
+      <div className="px-5 sm:px-12 pt-8 pb-32">
+        <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
+          <h2 className="text-xl font-medium text-ink mb-2">
+            Inga evenemang hittades
+          </h2>
+          <p className="text-sm text-ink-muted">
+            Prova en annan dag eller ta bort några kategorier.
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+}
 
 function EventsPage() {
   const { savedIds } = useSavedTrips();
+  const { data } = useSuspenseQuery(eventsQueryOptions);
+  const { events, error } = data;
+
   const [selectedDate, setSelectedDate] = useState<Date>(() => new Date());
   const [activeCats, setActiveCats] = useState<EventCategory[]>([]);
   const [pickerOpen, setPickerOpen] = useState(false);
 
-  const dayEvents = useMemo(() => {
-    return events
-      .filter((e) => isSameDay(parseISO(e.date), selectedDate))
-      .filter((e) => activeCats.length === 0 || activeCats.includes(e.category))
-      .sort((a, b) => a.time.localeCompare(b.time));
-  }, [selectedDate, activeCats]);
+  const dayEvents = useMemo<StockholmEvent[]>(() => {
+    const filtered = events
+      .filter((e: StockholmEvent) => isSameDay(parseISO(e.date), selectedDate))
+      .filter(
+        (e: StockholmEvent) =>
+          activeCats.length === 0 || activeCats.includes(e.category),
+      )
+      .sort((a: StockholmEvent, b: StockholmEvent) =>
+        a.time.localeCompare(b.time),
+      );
+    // eslint-disable-next-line no-console
+    console.log("activeCats", activeCats, "dayEvents cats", filtered.map((e) => e.category));
+    return filtered;
+  }, [events, selectedDate, activeCats]);
 
   const isToday = isSameDay(selectedDate, new Date());
 
@@ -156,6 +229,14 @@ function EventsPage() {
         })}
       </section>
 
+      {error && (
+        <section className="px-5 sm:px-12 mb-6">
+          <div className="bg-surface rounded-2xl ring-1 ring-black/5 p-4 text-sm text-ink-muted">
+            Obs: {error}
+          </div>
+        </section>
+      )}
+
       <section className="px-5 sm:px-12 pb-32">
         {dayEvents.length === 0 ? (
           <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
@@ -177,7 +258,7 @@ function EventsPage() {
           </div>
         ) : (
           <ol className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {dayEvents.map((e) => (
+            {dayEvents.map((e: StockholmEvent) => (
               <li
                 key={e.id}
                 className="bg-surface rounded-3xl ring-1 ring-black/5 p-6 flex flex-col gap-3"
@@ -203,20 +284,52 @@ function EventsPage() {
                 <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-muted">
                   <span className="inline-flex items-center gap-1.5">
                     <MapPin className="size-3.5" />
-                    {e.venue}, {e.neighborhood}
+                    {e.venue}
+                    {e.neighborhood ? `, ${e.neighborhood}` : null}
                   </span>
                   <span className="inline-flex items-center gap-1.5">
                     <Ticket className="size-3.5" />
                     {e.priceLabel}
                   </span>
                 </div>
+                {e.url ? (
+                  <a
+                    href={e.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-1.5 self-start rounded-full bg-moss/10 px-4 py-2 text-sm font-medium text-moss hover:bg-moss/20 transition-colors"
+                  >
+                    Läs mer / biljetter
+                    <ExternalLink className="size-3.5" />
+                  </a>
+                ) : null}
               </li>
             ))}
           </ol>
         )}
       </section>
 
-      <div className="px-5 sm:px-12 pb-16 text-center">
+      <div className="px-5 sm:px-12 pb-8 text-center">
+        <p className="text-xs text-ink-muted mb-4">
+          <a
+            href={EVENT_SOURCE_ATTRIBUTION.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-ink"
+          >
+            {EVENT_SOURCE_ATTRIBUTION.text}
+          </a>
+          {" "}— licensierat under{" "}
+          <a
+            href={EVENT_SOURCE_ATTRIBUTION.licenseUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-ink"
+          >
+            {EVENT_SOURCE_ATTRIBUTION.license}
+          </a>
+          .
+        </p>
         <Link
           to="/"
           className="text-sm text-ink-muted hover:text-ink transition-colors"
