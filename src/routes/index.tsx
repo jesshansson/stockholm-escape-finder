@@ -98,7 +98,7 @@ function Discover() {
   };
 
   return (
-    <main className="min-h-screen bg-sand text-ink">
+    <main className="min-h-screen bg-sand text-ink overflow-x-hidden">
       <SiteHeader
         onOpenSaved={() => setSavedOpen(true)}
         savedCount={savedIds.length}
