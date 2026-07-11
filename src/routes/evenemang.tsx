@@ -209,6 +209,17 @@ function EventsPage() {
       </section>
 
       <section className="px-5 sm:px-12 mb-8 flex flex-wrap gap-2">
+        <button
+          onClick={() => setFreeOnly((v) => !v)}
+          className={cn(
+            "px-3 py-1.5 rounded-full text-xs ring-1 transition-colors",
+            freeOnly
+              ? "bg-moss text-white ring-moss"
+              : "bg-surface text-ink-muted ring-black/5 hover:bg-ink-soft",
+          )}
+        >
+          Gratis
+        </button>
         {ALL_CATEGORIES.map((c) => {
           const active = activeCats.includes(c);
           return (
