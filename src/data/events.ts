@@ -123,6 +123,25 @@ function truncate(text: string, max: number): string {
   return text.slice(0, max).trimEnd().replace(/\s+\S*$/, "") + "…";
 }
 
+const FREE_KEYWORDS = [
+  "gratis",
+  "fri entré",
+  "fri entre",
+  "free admission",
+  "free entry",
+  "kostnadsfri",
+  "kostnadsfritt",
+  "fritt inträde",
+  "fritt intrade",
+  "ingen avgift",
+  "free of charge",
+];
+
+function detectFree(title: string, description: string): boolean {
+  const text = `${title} ${description}`.toLowerCase();
+  return FREE_KEYWORDS.some((keyword) => text.includes(keyword));
+}
+
 export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] {
   const occurrences: StockholmEvent[] = [];
 
