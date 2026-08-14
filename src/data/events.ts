@@ -1,4 +1,30 @@
+import he from "he";
 import { z } from "zod";
+
+/**
+ * Decode HTML entities from API text and normalise whitespace.
+ * Pure and SSR-safe (no DOM access, no dangerouslySetInnerHTML).
+ */
+export function normalizeApiText(input: string | null | undefined): string {
+  if (!input) return "";
+  let text = he.decode(input);
+  // Decode once more for double-encoded input (e.g. "&amp;quot;").
+  if (/&(#\d+|#x[0-9a-fA-F]+|[a-zA-Z][a-zA-Z0-9]{1,31});/.test(text)) {
+    text = he.decode(text);
+  }
+  return text
+    .replace(/\u00a0/g, " ")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/[ \t]*\n[ \t]*/g, "\n")
+    .trim();
+}
+
+/** Same decoding for URLs, but without whitespace collapsing inside the URL. */
+export function normalizeApiUrl(input: string | null | undefined): string | undefined {
+  if (!input) return undefined;
+  const decoded = he.decode(he.decode(input)).replace(/\s+/g, "").trim();
+  return decoded || undefined;
+}
 
 export type EventCategory =
   | "Musik"
@@ -150,17 +176,25 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
     if (!parsed.success) continue;
 
     const event = parsed.data;
-    const title = event.title.sv || event.title.en || "Evenemang";
+    const title =
+      normalizeApiText(event.title.sv) ||
+      normalizeApiText(event.title.en) ||
+      "Evenemang";
     const description =
-      event.description.sv || event.description.en || "";
+      normalizeApiText(event.description.sv) ||
+      normalizeApiText(event.description.en) ||
+      "";
     const category =
       event.categories.length > 0
         ? mapCategory(event.categories[0].slug)
         : "Övrigt";
 
-    const venue = event.venue_name || "Plats ej angiven";
+    const venue = normalizeApiText(event.venue_name) || "Plats ej angiven";
     const neighborhood =
-      event.address || event.city || event.closest_station || "";
+      normalizeApiText(event.address) ||
+      normalizeApiText(event.city) ||
+      normalizeApiText(event.closest_station) ||
+      "";
 
     const scheduleDates =
       event.schedule.dates.length > 0
@@ -177,7 +211,7 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
 
     for (const slot of scheduleDates) {
       if (!slot.date) continue;
-      const time = formatTime(slot.start_time, slot.end_time);
+      const time = normalizeApiText(formatTime(slot.start_time, slot.end_time));
       occurrences.push({
         id: `${event.id}--${slot.date}--${slot.start_time ?? "hel"}`,
         title,
@@ -189,7 +223,7 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
         priceLabel: isFree ? "Gratis" : "Prisinfo på hemsidan",
         isFree,
         date: slot.date,
-        url: event.external_website_url || event.url,
+        url: normalizeApiUrl(event.external_website_url) || normalizeApiUrl(event.url),
       });
     }
   }
