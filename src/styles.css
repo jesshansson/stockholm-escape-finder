@@ -124,4 +124,14 @@
   ::selection {
     background-color: color-mix(in oklab, var(--moss) 20%, transparent);
   }
+
+  /* Pointer cursor for all links and link-like elements */
+  a,
+  button,
+  [role="link"],
+  [role="button"],
+  [data-link],
+  [data-cursor="pointer"] {
+    cursor: pointer;
+  }
 }
