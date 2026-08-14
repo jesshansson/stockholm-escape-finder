@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
@@ -57,7 +57,12 @@ function MapView() {
 
   const [savedOpen, setSavedOpen] = useState(false);
 
-  const mapped = destinations.filter((d) => destinationCoordinates[d.id]);
+  // Stable identity — a new array each render would tear down and rebuild
+  // every map marker (and close the open popup) on unrelated state changes.
+  const mapped = useMemo(
+    () => destinations.filter((d) => destinationCoordinates[d.id]),
+    [destinations],
+  );
   const activeDestination = destinations.find((d) => d.id === activeId) ?? null;
   const savedDestinations = savedIds
     .map((id) => destinations.find((d) => d.id === id))
