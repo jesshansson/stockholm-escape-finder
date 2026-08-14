@@ -134,8 +134,13 @@ export function DestinationMap({ destinations, activeId, onSelect }: Props) {
     const pos = destinationCoordinates[activeId];
     const marker = markersRef.current[activeId];
     if (!pos || !marker) return;
-    map.panTo([pos.lat, pos.lng]);
-    marker.openPopup();
+    // Defer one frame so the popup opens after Leaflet has finished any
+    // in-flight fitBounds/pan animation from the markers effect.
+    const id = window.setTimeout(() => {
+      map.panTo([pos.lat, pos.lng]);
+      marker.openPopup();
+    }, 0);
+    return () => window.clearTimeout(id);
   }, [activeId, ready]);
 
   if (error) {
