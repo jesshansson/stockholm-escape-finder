@@ -24,6 +24,14 @@ export type RecommendInput = {
 const COLD_C = 5;
 const WARM_C = 20;
 
+/** Explicit definite-form wording — Swedish seasons don't take a single suffix. */
+export const SEASON_DEFINITE: Record<Season, string> = {
+  Vår: "våren",
+  Sommar: "sommaren",
+  Höst: "hösten",
+  Vinter: "vintern",
+};
+
 function isIndoorFriendly(d: Destination) {
   return d.indoorOutdoor === "Inomhus" || d.indoorOutdoor === "Både och";
 }
@@ -92,7 +100,7 @@ export function recommendDestinations(
 
     if (matchesSeason(d, season)) {
       score += 16;
-      reasons.push(`fin nu på ${season.toLowerCase()}en`);
+      reasons.push(`fin nu på ${SEASON_DEFINITE[season]}`);
     } else if (d.seasonTags.includes("Året runt")) {
       score += 8;
       reasons.push("funkar året runt");

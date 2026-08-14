@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { recommendDestinations } from "./recommend";
+import { recommendDestinations, SEASON_DEFINITE } from "./recommend";
 import type { WeatherSummary } from "./weather";
 import { getSeason, isWetCode, weatherLabel } from "./weather";
 import type { Destination } from "@/data/types";
@@ -94,6 +94,27 @@ describe("weather helpers", () => {
   it("derives the Swedish season", () => {
     expect(getSeason(summer)).toBe("Sommar");
     expect(getSeason(winter)).toBe("Vinter");
+  });
+});
+
+describe("season wording", () => {
+  it("uses correct Swedish definite forms", () => {
+    expect(SEASON_DEFINITE).toEqual({
+      "Vår": "våren",
+      Sommar: "sommaren",
+      "Höst": "hösten",
+      Vinter: "vintern",
+    });
+  });
+
+  it("reads naturally in a recommendation reason", () => {
+    const autumn = new Date("2026-10-10T10:00:00Z");
+    const [tip] = recommendDestinations(
+      [makeDestination({ id: "autumn-walk", seasonTags: ["Höst"] })],
+      { weather: null, date: autumn },
+    );
+    expect(tip!.reason).toContain("fin nu på hösten");
+    expect(tip!.reason).not.toContain("höst" + "en" + "en");
   });
 });
 
