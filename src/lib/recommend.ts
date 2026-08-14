@@ -68,16 +68,17 @@ export function recommendDestinations(
           reasons.push("mat och fika inomhus");
         }
       } else {
+        // A dry day is a strong argument for going outside — unless it is freezing.
         if (isOutdoor(d)) {
-          score += 32;
+          score += isCold ? 10 : 32;
           reasons.push("torrt väder och utomhus");
         }
-        if (d.indoorOutdoor === "Inomhus") score -= 12;
+        if (d.indoorOutdoor === "Inomhus" && !isCold) score -= 12;
       }
 
-      if (weather.temperatureC <= COLD_C) {
+      if (isCold) {
         if (isIndoorFriendly(d)) {
-          score += 18;
+          score += 28;
           reasons.push("varmt och skönt när det är kallt ute");
         }
         if (d.category === "Badplats") score -= 30;
