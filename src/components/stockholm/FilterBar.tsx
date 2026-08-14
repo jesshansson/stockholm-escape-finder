@@ -47,6 +47,8 @@ export function FilterBar({ filters, setFilters, resultCount }: Props) {
             return (
               <button
                 key={d.id}
+                type="button"
+                aria-pressed={active}
                 onClick={() =>
                   setFilters({
                     ...filters,
@@ -55,6 +57,7 @@ export function FilterBar({ filters, setFilters, resultCount }: Props) {
                 }
                 className={[
                   "whitespace-nowrap px-3 py-1.5 rounded-lg text-sm transition-colors",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss",
                   active
                     ? "bg-moss/10 text-moss font-medium"
                     : "text-ink-muted hover:bg-ink-soft",
@@ -191,9 +194,12 @@ function Chip({
 }) {
   return (
     <button
+      type="button"
+      aria-pressed={active}
       onClick={onClick}
       className={[
         "px-3 py-1.5 rounded-full text-xs ring-1 transition-colors",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2",
         active
           ? "bg-moss text-white ring-moss"
           : "bg-surface text-ink-muted ring-black/5 hover:bg-ink-soft",
