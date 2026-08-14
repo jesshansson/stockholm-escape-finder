@@ -55,6 +55,8 @@ export function recommendDestinations(
     const reasons: string[] = [];
 
     if (weather) {
+      const isCold = weather.temperatureC <= COLD_C;
+
       if (weather.isWet) {
         if (isIndoorFriendly(d)) {
           score += 40;
