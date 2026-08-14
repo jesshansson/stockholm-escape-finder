@@ -176,17 +176,25 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
     if (!parsed.success) continue;
 
     const event = parsed.data;
-    const title = event.title.sv || event.title.en || "Evenemang";
+    const title =
+      normalizeApiText(event.title.sv) ||
+      normalizeApiText(event.title.en) ||
+      "Evenemang";
     const description =
-      event.description.sv || event.description.en || "";
+      normalizeApiText(event.description.sv) ||
+      normalizeApiText(event.description.en) ||
+      "";
     const category =
       event.categories.length > 0
         ? mapCategory(event.categories[0].slug)
         : "Övrigt";
 
-    const venue = event.venue_name || "Plats ej angiven";
+    const venue = normalizeApiText(event.venue_name) || "Plats ej angiven";
     const neighborhood =
-      event.address || event.city || event.closest_station || "";
+      normalizeApiText(event.address) ||
+      normalizeApiText(event.city) ||
+      normalizeApiText(event.closest_station) ||
+      "";
 
     const scheduleDates =
       event.schedule.dates.length > 0
