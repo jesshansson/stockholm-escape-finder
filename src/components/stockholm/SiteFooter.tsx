@@ -1,11 +1,11 @@
+import { Link } from "@tanstack/react-router";
 import type { Destination } from "@/data/types";
 
 type Props = {
   saved: Destination[];
-  onOpenSaved: () => void;
 };
 
-export function SiteFooter({ saved, onOpenSaved }: Props) {
+export function SiteFooter({ saved }: Props) {
   return (
     <footer className="px-5 sm:px-12 py-12 sm:py-14 border-t border-black/5">
       <div className="flex flex-col md:flex-row justify-between gap-10">
@@ -15,9 +15,9 @@ export function SiteFooter({ saved, onOpenSaved }: Props) {
           </h4>
           <div className="flex gap-3 flex-wrap">
             {saved.slice(0, 5).map((d) => (
-              <button
+              <Link
                 key={d.id}
-                onClick={onOpenSaved}
+                to="/sparade"
                 className="size-16 rounded-xl ring-1 ring-black/5 overflow-hidden"
                 aria-label={d.name}
               >
@@ -28,14 +28,14 @@ export function SiteFooter({ saved, onOpenSaved }: Props) {
                   height={128}
                   className="size-full object-cover"
                 />
-              </button>
+              </Link>
             ))}
-            <button
-              onClick={onOpenSaved}
+            <Link
+              to="/sparade"
               className="size-16 rounded-xl border-2 border-dashed border-ink-muted/30 flex items-center justify-center text-ink-muted/60 hover:border-ink-muted/50 transition-colors"
             >
               <span className="text-xl font-light">+</span>
-            </button>
+            </Link>
           </div>
         </div>
         <div className="max-w-xs">

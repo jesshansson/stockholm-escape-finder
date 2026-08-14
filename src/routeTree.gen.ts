@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SparadeRouteImport } from './routes/sparade'
 import { Route as KartaRouteImport } from './routes/karta'
 import { Route as EvenemangRouteImport } from './routes/evenemang'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SparadeRoute = SparadeRouteImport.update({
+  id: '/sparade',
+  path: '/sparade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KartaRoute = KartaRouteImport.update({
   id: '/karta',
   path: '/karta',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/evenemang': typeof EvenemangRoute
   '/karta': typeof KartaRoute
+  '/sparade': typeof SparadeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/evenemang': typeof EvenemangRoute
   '/karta': typeof KartaRoute
+  '/sparade': typeof SparadeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/evenemang': typeof EvenemangRoute
   '/karta': typeof KartaRoute
+  '/sparade': typeof SparadeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/evenemang' | '/karta'
+  fullPaths: '/' | '/evenemang' | '/karta' | '/sparade'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/evenemang' | '/karta'
-  id: '__root__' | '/' | '/evenemang' | '/karta'
+  to: '/' | '/evenemang' | '/karta' | '/sparade'
+  id: '__root__' | '/' | '/evenemang' | '/karta' | '/sparade'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EvenemangRoute: typeof EvenemangRoute
   KartaRoute: typeof KartaRoute
+  SparadeRoute: typeof SparadeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sparade': {
+      id: '/sparade'
+      path: '/sparade'
+      fullPath: '/sparade'
+      preLoaderRoute: typeof SparadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/karta': {
       id: '/karta'
       path: '/karta'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EvenemangRoute: EvenemangRoute,
   KartaRoute: KartaRoute,
+  SparadeRoute: SparadeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

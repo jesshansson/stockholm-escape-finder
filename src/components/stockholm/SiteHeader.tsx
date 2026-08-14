@@ -3,11 +3,10 @@ import { Link } from "@tanstack/react-router";
 
 
 type Props = {
-  onOpenSaved: () => void;
   savedCount: number;
 };
 
-export function SiteHeader({ onOpenSaved, savedCount }: Props) {
+export function SiteHeader({ savedCount }: Props) {
   return (
     <header className="px-4 sm:px-12 py-4 sm:py-6 flex justify-between items-center gap-3">
       <Link to="/" className="flex items-center gap-2 min-w-0">
@@ -45,8 +44,9 @@ export function SiteHeader({ onOpenSaved, savedCount }: Props) {
           <CalendarIcon className="size-4" />
           <span className="hidden sm:inline">Evenemang</span>
         </Link>
-        <button
-          onClick={onOpenSaved}
+        <Link
+          to="/sparade"
+          activeProps={{ className: "text-moss bg-moss/10" }}
           className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full hover:bg-ink-soft transition-colors text-ink-muted hover:text-ink"
           aria-label="Sparade"
         >
@@ -57,7 +57,7 @@ export function SiteHeader({ onOpenSaved, savedCount }: Props) {
               {savedCount}
             </span>
           )}
-        </button>
+        </Link>
       </nav>
     </header>
   );
