@@ -47,7 +47,7 @@ function MapPage() {
 function MapView() {
   const { d: initialId } = Route.useSearch();
   const { data: destinations } = useDestinations();
-  const { savedIds, toggle, remove, isSaved } = useSavedTrips();
+  const { savedIds, toggle, isSaved } = useSavedTrips();
   const [activeId, setActiveId] = useState<string | null>(initialId ?? null);
 
   useEffect(() => {
@@ -61,9 +61,6 @@ function MapView() {
     [destinations],
   );
   const activeDestination = destinations.find((d) => d.id === activeId) ?? null;
-  const savedDestinations = savedIds
-    .map((id) => destinations.find((d) => d.id === id))
-    .filter((d): d is NonNullable<typeof d> => Boolean(d));
 
   return (
     <main className="min-h-screen flex flex-col bg-sand text-ink">

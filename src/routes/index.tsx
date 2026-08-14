@@ -61,7 +61,7 @@ function IndexPage() {
 
 function Discover() {
   const { data: destinations } = useDestinations();
-  const { savedIds, toggle, remove, isSaved } = useSavedTrips();
+  const { savedIds, toggle, isSaved } = useSavedTrips();
 
   const [filters, setFilters] = useState<ActiveFilters>(emptyFilters);
   const [activeId, setActiveId] = useState<string | null>(null);
