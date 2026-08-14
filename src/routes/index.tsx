@@ -7,6 +7,7 @@ import { MoodPills } from "@/components/stockholm/MoodPills";
 import { FilterBar } from "@/components/stockholm/FilterBar";
 import { DestinationGrid } from "@/components/stockholm/DestinationGrid";
 import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
+import { DailyTips } from "@/components/stockholm/DailyTips";
 import { SavedTripsSheet } from "@/components/stockholm/SavedTripsSheet";
 import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
@@ -104,6 +105,7 @@ function Discover() {
         savedCount={savedIds.length}
       />
       <Hero onFindPlace={scrollToResults} />
+      <DailyTips destinations={destinations} onOpen={(id) => setActiveId(id)} />
       <MoodPills selected={filters.moods} onToggle={toggleMood} />
       <FilterBar
         filters={filters}
