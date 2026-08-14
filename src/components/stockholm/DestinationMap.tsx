@@ -130,9 +130,11 @@ export function DestinationMap({ destinations, activeId, onSelect }: Props) {
   // Pan to and open the selected destination's marker.
   useEffect(() => {
     const map = mapRef.current;
+    console.log('[map] active pre', activeId, !!map, ready);
     if (!activeId || !map) return;
     const pos = destinationCoordinates[activeId];
     const marker = markersRef.current[activeId];
+    console.log('[map] active effect', activeId, !!pos, !!marker, ready);
     if (!pos || !marker) return;
     // Defer one frame so the popup opens after Leaflet has finished any
     // in-flight fitBounds/pan animation from the markers effect.
