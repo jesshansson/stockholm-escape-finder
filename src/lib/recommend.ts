@@ -100,7 +100,7 @@ export function recommendDestinations(
 
     if (matchesSeason(d, season)) {
       score += 16;
-      reasons.push(`fin nu på ${season.toLowerCase()}en`);
+      reasons.push(`fin nu på ${SEASON_DEFINITE[season]}`);
     } else if (d.seasonTags.includes("Året runt")) {
       score += 8;
       reasons.push("funkar året runt");
