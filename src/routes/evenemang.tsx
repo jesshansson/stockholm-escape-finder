@@ -42,7 +42,7 @@ const eventsQueryOptions = queryOptions({
 export const Route = createFileRoute("/evenemang")({
   head: () => ({
     meta: [
-      { title: "Evenemang i Stockholm — Stockholm Day Trips" },
+      { title: "Evenemang i Stockholm — Stockholm Escapes" },
       {
         name: "description",
         content:

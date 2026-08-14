@@ -25,13 +25,13 @@ import type { MoodTag } from "@/data/types";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stockholm Day Trips — Hitta din nästa Stockholmsutflykt" },
+      { title: "Stockholm Escapes — Hitta din nästa Stockholmsutflykt" },
       {
         name: "description",
         content:
           "Upptäck snabbt naturpärlor, kulturplatser, caféer, restauranger och skärgårdsöar runt Stockholm — baserat på humör, avstånd och tid.",
       },
-      { property: "og:title", content: "Stockholm Day Trips" },
+      { property: "og:title", content: "Stockholm Escapes" },
       {
         property: "og:description",
         content:

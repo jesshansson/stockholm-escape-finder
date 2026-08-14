@@ -15,7 +15,7 @@ export function SiteHeader({ onOpenSaved, savedCount }: Props) {
           <div className="size-3.5 rounded-sm bg-moss" />
         </div>
         <span className="text-[11px] sm:text-sm font-medium tracking-wide uppercase text-ink truncate">
-          Stockholm Day Trips
+          Stockholm Escapes
         </span>
       </Link>
       <nav className="flex items-center gap-1 sm:gap-3 text-sm font-medium shrink-0">

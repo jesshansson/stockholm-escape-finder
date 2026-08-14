@@ -13,13 +13,13 @@ import { useSavedTrips } from "@/lib/use-saved-trips";
 export const Route = createFileRoute("/karta")({
   head: () => ({
     meta: [
-      { title: "Karta — Stockholm Day Trips" },
+      { title: "Karta — Stockholm Escapes" },
       {
         name: "description",
         content:
           "Se alla utflyktsmål runt Stockholm på en interaktiv karta — välj en pin för att läsa mer om platsen.",
       },
-      { property: "og:title", content: "Karta — Stockholm Day Trips" },
+      { property: "og:title", content: "Karta — Stockholm Escapes" },
       {
         property: "og:description",
         content:

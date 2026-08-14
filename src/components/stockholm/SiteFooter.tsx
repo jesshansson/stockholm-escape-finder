@@ -40,7 +40,7 @@ export function SiteFooter({ saved, onOpenSaved }: Props) {
         </div>
         <div className="max-w-xs">
           <p className="text-xs text-ink-muted leading-relaxed">
-            Stockholm Day Trips — spontana utflykter runt staden, valda efter
+            Stockholm Escapes — spontana utflykter runt staden, valda efter
             humör, restid och vad du har lust med just idag.
           </p>
         </div>
