@@ -72,13 +72,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Stockholm Day Trips — Hitta din nästa Stockholmsutflykt" },
+      { title: "Stockholm Escapes — Hitta din nästa Stockholmsutflykt" },
       {
         name: "description",
         content:
           "Upptäck snabbt naturpärlor, kulturplatser, caféer, restauranger och skärgårdsöar runt Stockholm — baserat på humör, avstånd och tid.",
       },
-      { property: "og:title", content: "Stockholm Day Trips" },
+      { property: "og:title", content: "Stockholm Escapes" },
       {
         property: "og:description",
         content:

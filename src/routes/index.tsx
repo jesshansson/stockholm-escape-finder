@@ -7,6 +7,7 @@ import { MoodPills } from "@/components/stockholm/MoodPills";
 import { FilterBar } from "@/components/stockholm/FilterBar";
 import { DestinationGrid } from "@/components/stockholm/DestinationGrid";
 import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
+import { DailyTips } from "@/components/stockholm/DailyTips";
 import { SavedTripsSheet } from "@/components/stockholm/SavedTripsSheet";
 import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
@@ -25,13 +26,13 @@ import type { MoodTag } from "@/data/types";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stockholm Day Trips — Hitta din nästa Stockholmsutflykt" },
+      { title: "Stockholm Escapes — Hitta din nästa Stockholmsutflykt" },
       {
         name: "description",
         content:
           "Upptäck snabbt naturpärlor, kulturplatser, caféer, restauranger och skärgårdsöar runt Stockholm — baserat på humör, avstånd och tid.",
       },
-      { property: "og:title", content: "Stockholm Day Trips" },
+      { property: "og:title", content: "Stockholm Escapes" },
       {
         property: "og:description",
         content:
@@ -104,6 +105,7 @@ function Discover() {
         savedCount={savedIds.length}
       />
       <Hero onFindPlace={scrollToResults} />
+      <DailyTips destinations={destinations} onOpen={(id) => setActiveId(id)} />
       <MoodPills selected={filters.moods} onToggle={toggleMood} />
       <FilterBar
         filters={filters}
