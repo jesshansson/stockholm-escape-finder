@@ -10,22 +10,15 @@ import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
 import { DailyTips } from "@/components/stockholm/DailyTips";
 import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
-import {
-  destinationsQueryOptions,
-  useDestinations,
-} from "@/lib/use-destinations";
+import { destinationsQueryOptions, useDestinations } from "@/lib/use-destinations";
 import { useSavedTrips } from "@/lib/use-saved-trips";
-import {
-  emptyFilters,
-  filterDestinations,
-  type ActiveFilters,
-} from "@/lib/filter";
+import { emptyFilters, filterDestinations, type ActiveFilters } from "@/lib/filter";
 import type { MoodTag } from "@/data/types";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stockholm Escapes — Hitta din nästa Stockholmsutflykt" },
+      { title: "Stockholm Escapes - Hitta din nästa Stockholmsutflykt" },
       {
         name: "description",
         content:
@@ -34,8 +27,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Stockholm Escapes" },
       {
         property: "og:description",
-        content:
-          "Spontana dagsutflykter runt Stockholm — välj efter humör, restid och plats.",
+        content: "Spontana dagsutflykter runt Stockholm — välj efter humör, restid och plats.",
       },
     ],
   }),
@@ -49,9 +41,7 @@ function IndexPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-sand flex items-center justify-center text-ink-muted">
-          Laddar utflykter…
-        </div>
+        <div className="min-h-screen bg-sand flex items-center justify-center text-ink-muted">Laddar utflykter…</div>
       }
     >
       <Discover />
@@ -66,10 +56,7 @@ function Discover() {
   const [filters, setFilters] = useState<ActiveFilters>(emptyFilters);
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  const filtered = useMemo(
-    () => filterDestinations(destinations, filters),
-    [destinations, filters],
-  );
+  const filtered = useMemo(() => filterDestinations(destinations, filters), [destinations, filters]);
 
   const activeDestination = useMemo(
     () => destinations.find((d) => d.id === activeId) ?? null,
@@ -77,18 +64,15 @@ function Discover() {
   );
 
   const savedDestinations = useMemo(
-    () => savedIds.map((id) => destinations.find((d) => d.id === id)).filter(
-      (d): d is NonNullable<typeof d> => Boolean(d),
-    ),
+    () =>
+      savedIds.map((id) => destinations.find((d) => d.id === id)).filter((d): d is NonNullable<typeof d> => Boolean(d)),
     [savedIds, destinations],
   );
 
   const toggleMood = (mood: MoodTag) => {
     setFilters({
       ...filters,
-      moods: filters.moods.includes(mood)
-        ? filters.moods.filter((m) => m !== mood)
-        : [...filters.moods, mood],
+      moods: filters.moods.includes(mood) ? filters.moods.filter((m) => m !== mood) : [...filters.moods, mood],
     });
   };
 
@@ -102,11 +86,7 @@ function Discover() {
       <Hero onFindPlace={scrollToResults} />
       <DailyTips destinations={destinations} onOpen={(id) => setActiveId(id)} />
       <MoodPills selected={filters.moods} onToggle={toggleMood} />
-      <FilterBar
-        filters={filters}
-        setFilters={setFilters}
-        resultCount={filtered.length}
-      />
+      <FilterBar filters={filters} setFilters={setFilters} resultCount={filtered.length} />
       <DestinationGrid
         destinations={filtered}
         savedIds={savedIds}
