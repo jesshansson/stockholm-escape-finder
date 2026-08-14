@@ -1,4 +1,4 @@
-import { decode } from "he";
+import he from "he";
 import { z } from "zod";
 
 /**
