@@ -67,7 +67,7 @@ function EventsError({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
   return (
     <main className="min-h-screen bg-sand text-ink">
-      <SiteHeader onOpenSaved={() => {}} savedCount={0} />
+      <SiteHeader savedCount={0} />
       <div className="px-5 sm:px-12 pt-8 pb-32">
         <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
           <h2 className="text-xl font-medium text-ink mb-2">
@@ -94,7 +94,7 @@ function EventsError({ error, reset }: { error: Error; reset: () => void }) {
 function EventsNotFound() {
   return (
     <main className="min-h-screen bg-sand text-ink">
-      <SiteHeader onOpenSaved={() => {}} savedCount={0} />
+      <SiteHeader savedCount={0} />
       <div className="px-5 sm:px-12 pt-8 pb-32">
         <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
           <h2 className="text-xl font-medium text-ink mb-2">
@@ -142,7 +142,7 @@ function EventsPage() {
 
   return (
     <main className="min-h-screen bg-sand text-ink">
-      <SiteHeader onOpenSaved={() => {}} savedCount={savedIds.length} />
+      <SiteHeader savedCount={savedIds.length} />
 
       <section className="px-5 sm:px-12 pt-4 sm:pt-8 pb-8">
         <h1

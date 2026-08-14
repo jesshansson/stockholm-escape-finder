@@ -5,7 +5,6 @@ import { z } from "zod";
 import { SiteHeader } from "@/components/stockholm/SiteHeader";
 import { DestinationMap } from "@/components/stockholm/DestinationMap";
 import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
-import { SavedTripsSheet } from "@/components/stockholm/SavedTripsSheet";
 import { destinationCoordinates } from "@/data/coordinates";
 import { useDestinations } from "@/lib/use-destinations";
 import { useSavedTrips } from "@/lib/use-saved-trips";
@@ -48,14 +47,12 @@ function MapPage() {
 function MapView() {
   const { d: initialId } = Route.useSearch();
   const { data: destinations } = useDestinations();
-  const { savedIds, toggle, remove, isSaved } = useSavedTrips();
+  const { savedIds, toggle, isSaved } = useSavedTrips();
   const [activeId, setActiveId] = useState<string | null>(initialId ?? null);
 
   useEffect(() => {
     if (initialId) setActiveId(initialId);
   }, [initialId]);
-
-  const [savedOpen, setSavedOpen] = useState(false);
 
   // Stable identity — a new array each render would tear down and rebuild
   // every map marker (and close the open popup) on unrelated state changes.
@@ -64,16 +61,10 @@ function MapView() {
     [destinations],
   );
   const activeDestination = destinations.find((d) => d.id === activeId) ?? null;
-  const savedDestinations = savedIds
-    .map((id) => destinations.find((d) => d.id === id))
-    .filter((d): d is NonNullable<typeof d> => Boolean(d));
 
   return (
     <main className="min-h-screen flex flex-col bg-sand text-ink">
-      <SiteHeader
-        onOpenSaved={() => setSavedOpen(true)}
-        savedCount={savedIds.length}
-      />
+      <SiteHeader savedCount={savedIds.length} />
       <section className="px-5 sm:px-12 pb-4 sm:pb-6">
         <h1
           style={{ fontFamily: "var(--font-serif)" }}
@@ -102,16 +93,6 @@ function MapView() {
         onOpenChange={(open) => !open && setActiveId(null)}
         saved={activeDestination ? isSaved(activeDestination.id) : false}
         onToggleSave={() => activeDestination && toggle(activeDestination.id)}
-      />
-      <SavedTripsSheet
-        open={savedOpen}
-        onOpenChange={setSavedOpen}
-        destinations={savedDestinations}
-        onOpen={(id) => {
-          setSavedOpen(false);
-          setActiveId(id);
-        }}
-        onRemove={remove}
       />
     </main>
   );

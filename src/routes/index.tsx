@@ -8,7 +8,6 @@ import { FilterBar } from "@/components/stockholm/FilterBar";
 import { DestinationGrid } from "@/components/stockholm/DestinationGrid";
 import { DestinationSheet } from "@/components/stockholm/DestinationSheet";
 import { DailyTips } from "@/components/stockholm/DailyTips";
-import { SavedTripsSheet } from "@/components/stockholm/SavedTripsSheet";
 import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
 import {
@@ -62,11 +61,10 @@ function IndexPage() {
 
 function Discover() {
   const { data: destinations } = useDestinations();
-  const { savedIds, toggle, remove, isSaved } = useSavedTrips();
+  const { savedIds, toggle, isSaved } = useSavedTrips();
 
   const [filters, setFilters] = useState<ActiveFilters>(emptyFilters);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [savedOpen, setSavedOpen] = useState(false);
 
   const filtered = useMemo(
     () => filterDestinations(destinations, filters),
@@ -100,10 +98,7 @@ function Discover() {
 
   return (
     <main className="min-h-screen bg-sand text-ink overflow-x-hidden">
-      <SiteHeader
-        onOpenSaved={() => setSavedOpen(true)}
-        savedCount={savedIds.length}
-      />
+      <SiteHeader savedCount={savedIds.length} />
       <Hero onFindPlace={scrollToResults} />
       <DailyTips destinations={destinations} onOpen={(id) => setActiveId(id)} />
       <MoodPills selected={filters.moods} onToggle={toggleMood} />
@@ -119,10 +114,7 @@ function Discover() {
         onOpen={(id) => setActiveId(id)}
         onClear={() => setFilters(emptyFilters)}
       />
-      <SiteFooter
-        saved={savedDestinations}
-        onOpenSaved={() => setSavedOpen(true)}
-      />
+      <SiteFooter saved={savedDestinations} />
 
       <DestinationSheet
         destination={activeDestination}
@@ -130,17 +122,6 @@ function Discover() {
         onOpenChange={(open) => !open && setActiveId(null)}
         saved={activeDestination ? isSaved(activeDestination.id) : false}
         onToggleSave={() => activeDestination && toggle(activeDestination.id)}
-      />
-
-      <SavedTripsSheet
-        open={savedOpen}
-        onOpenChange={setSavedOpen}
-        destinations={savedDestinations}
-        onOpen={(id) => {
-          setSavedOpen(false);
-          setActiveId(id);
-        }}
-        onRemove={remove}
       />
     </main>
   );
