@@ -86,24 +86,32 @@ export function DestinationCard({
 
   return (
     <article className="bg-surface rounded-[24px] ring-1 ring-black/5 overflow-hidden flex flex-col group">
-      <button onClick={onOpen} className="block overflow-hidden relative" aria-label={`Öppna ${d.name}`}>
-        <img
-          src={d.image}
-          alt={d.name}
-          width={800}
-          height={640}
-          loading="lazy"
-          className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-        />
-        <div className="absolute top-3 right-3" onClick={(e) => e.stopPropagation()}>
+      {/* "Öppna" and "Spara" are siblings — never nested interactive elements. */}
+      <div className="relative overflow-hidden">
+        <button
+          type="button"
+          onClick={onOpen}
+          className="block w-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-inset"
+          aria-label={`Öppna ${d.name}`}
+        >
+          <img
+            src={d.image}
+            alt={d.name}
+            width={800}
+            height={640}
+            loading="lazy"
+            className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        </button>
+        <div className="absolute top-3 right-3">
           <SaveButton saved={saved} onClick={onToggleSave} />
         </div>
         {d.imageCredit && (
-          <span className="absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/45 text-white text-[9px] font-medium tracking-wide backdrop-blur-sm">
+          <span className="pointer-events-none absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/45 text-white text-[9px] font-medium tracking-wide backdrop-blur-sm">
             Foto: {d.imageCredit.author} / {d.imageCredit.source}
           </span>
         )}
-      </button>
+      </div>
       <div className="p-5 flex flex-col">
         <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-muted/70 mb-1.5">
           {d.category}
