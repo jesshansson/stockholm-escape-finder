@@ -211,7 +211,7 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
 
     for (const slot of scheduleDates) {
       if (!slot.date) continue;
-      const time = formatTime(slot.start_time, slot.end_time);
+      const time = normalizeApiText(formatTime(slot.start_time, slot.end_time));
       occurrences.push({
         id: `${event.id}--${slot.date}--${slot.start_time ?? "hel"}`,
         title,
@@ -223,7 +223,7 @@ export function mapVisitStockholmEvents(apiEvents: unknown[]): StockholmEvent[] 
         priceLabel: isFree ? "Gratis" : "Prisinfo på hemsidan",
         isFree,
         date: slot.date,
-        url: event.external_website_url || event.url,
+        url: normalizeApiUrl(event.external_website_url) || normalizeApiUrl(event.url),
       });
     }
   }
