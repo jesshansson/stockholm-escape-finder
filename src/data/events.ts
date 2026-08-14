@@ -1,4 +1,30 @@
+import { decode } from "he";
 import { z } from "zod";
+
+/**
+ * Decode HTML entities from API text and normalise whitespace.
+ * Pure and SSR-safe (no DOM access, no dangerouslySetInnerHTML).
+ */
+export function normalizeApiText(input: string | null | undefined): string {
+  if (!input) return "";
+  let text = decode(input);
+  // Decode once more for double-encoded input (e.g. "&amp;quot;").
+  if (/&(#\d+|#x[0-9a-fA-F]+|[a-zA-Z][a-zA-Z0-9]{1,31});/.test(text)) {
+    text = decode(text);
+  }
+  return text
+    .replace(/\u00a0/g, " ")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/[ \t]*\n[ \t]*/g, "\n")
+    .trim();
+}
+
+/** Same decoding for URLs, but without whitespace collapsing inside the URL. */
+export function normalizeApiUrl(input: string | null | undefined): string | undefined {
+  if (!input) return undefined;
+  const decoded = decode(decode(input)).replace(/\s+/g, "").trim();
+  return decoded || undefined;
+}
 
 export type EventCategory =
   | "Musik"
