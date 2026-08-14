@@ -7,10 +7,10 @@ import { z } from "zod";
  */
 export function normalizeApiText(input: string | null | undefined): string {
   if (!input) return "";
-  let text = decode(input);
+  let text = he.decode(input);
   // Decode once more for double-encoded input (e.g. "&amp;quot;").
   if (/&(#\d+|#x[0-9a-fA-F]+|[a-zA-Z][a-zA-Z0-9]{1,31});/.test(text)) {
-    text = decode(text);
+    text = he.decode(text);
   }
   return text
     .replace(/\u00a0/g, " ")
@@ -22,7 +22,7 @@ export function normalizeApiText(input: string | null | undefined): string {
 /** Same decoding for URLs, but without whitespace collapsing inside the URL. */
 export function normalizeApiUrl(input: string | null | undefined): string | undefined {
   if (!input) return undefined;
-  const decoded = decode(decode(input)).replace(/\s+/g, "").trim();
+  const decoded = he.decode(he.decode(input)).replace(/\s+/g, "").trim();
   return decoded || undefined;
 }
 
