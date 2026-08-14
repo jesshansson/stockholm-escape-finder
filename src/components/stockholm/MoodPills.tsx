@@ -25,9 +25,12 @@ export function MoodPills({ selected, onToggle }: Props) {
           return (
             <button
               key={mood}
+              type="button"
+              aria-pressed={isActive}
               onClick={() => onToggle(mood)}
               className={[
                 "px-5 py-2.5 rounded-full text-sm font-medium ring-1 transition-all",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-sand",
                 isActive
                   ? "bg-moss text-white ring-moss shadow-sm shadow-moss/20"
                   : idle,

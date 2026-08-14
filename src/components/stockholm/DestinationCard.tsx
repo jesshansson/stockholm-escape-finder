@@ -20,8 +20,9 @@ export function DestinationCard({
     return (
       <article className="col-span-1 md:col-span-2 bg-surface rounded-[24px] ring-1 ring-black/5 overflow-hidden flex flex-col md:flex-row group">
         <button
+          type="button"
           onClick={onOpen}
-          className="md:w-1/2 block overflow-hidden"
+          className="md:w-1/2 block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-inset"
           aria-label={`Öppna ${d.name}`}
         >
           <img
@@ -148,13 +149,16 @@ function SaveButton({
 }) {
   return (
     <button
+      type="button"
       onClick={(e) => {
         e.stopPropagation();
         onClick();
       }}
+      aria-pressed={saved}
       aria-label={saved ? "Ta bort från sparade" : "Spara"}
       className={[
         "size-9 rounded-full flex items-center justify-center transition-colors ring-1",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
         saved
           ? "bg-moss text-white ring-moss"
           : "bg-surface/95 backdrop-blur text-ink ring-black/5 hover:bg-ink-soft",
