@@ -1,0 +1,15 @@
+# Netlify deployment for the TanStack Start SSR build.
+#
+# The Nitro netlify preset (selected in vite.config.ts when NETLIFY is set)
+# emits static assets into dist/ and the SSR handler into
+# .netlify/functions-internal/server/, and generates dist/_redirects +
+# dist/_headers itself. Do NOT add a manual SPA redirect and do NOT publish
+# dist/client — either one breaks SSR and the weather/events server functions.
+
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  BUN_VERSION = "1.3.3"
