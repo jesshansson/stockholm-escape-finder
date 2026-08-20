@@ -8,6 +8,14 @@ import type {
   MoodTag,
   PracticalTag,
 } from "@/data/types";
+import {
+  CATEGORY_OPTIONS,
+  DISTANCE_OPTIONS,
+  DURATION_OPTIONS,
+  MOOD_OPTIONS,
+  PRACTICAL_OPTIONS,
+} from "@/data/filters";
+
 
 export type ActiveFilters = {
   distance: DistanceRange[];
@@ -68,14 +76,6 @@ export function countActiveFilters(filters: ActiveFilters): number {
 // tolerant: unknown or malformed values are dropped instead of throwing, so an
 // old or hand-edited link degrades to "fewer filters" rather than an error page.
 // ---------------------------------------------------------------------------
-
-import {
-  CATEGORY_OPTIONS,
-  DISTANCE_OPTIONS,
-  DURATION_OPTIONS,
-  MOOD_OPTIONS,
-  PRACTICAL_OPTIONS,
-} from "@/data/filters";
 
 /** Short query-string keys: d=distans, k=kategori, h=humör, p=praktiskt, t=tid. */
 export type FilterSearch = {
