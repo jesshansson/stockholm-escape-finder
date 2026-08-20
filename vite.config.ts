@@ -22,4 +22,3 @@ export default defineConfig({
   },
   ...(isNetlifyBuild ? { nitro: { preset: "netlify" as const } } : {}),
 });
-
