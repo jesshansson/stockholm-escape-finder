@@ -102,3 +102,36 @@ bun run dev      # http://localhost:8080
 ```
 
 Inga miljövariabler eller API-nycklar behövs — samtliga externa tjänster är öppna.
+
+## Deploy till Netlify (SSR)
+
+Appen är serverrenderad och behöver en server-runtime — en ren statisk deploy skulle slå ut väder- och evenemangsfunktionerna. Repot är förberett för Netlify:
+
+- `vite.config.ts` väljer Nitros `netlify`-preset när miljövariabeln `NETLIFY` är satt (Netlifys byggmiljö sätter den automatiskt).
+- `netlify.toml` kör `bun run build`, publicerar `dist` och låser Node 22 / Bun 1.3.3.
+
+Så här kopplar du upp det:
+
+1. Push:a repot till GitHub och skapa en ny site i Netlify från repot.
+2. Netlify läser `netlify.toml` — build command, publish-katalog och versioner behöver inte fyllas i manuellt.
+3. Inga miljövariabler behöver läggas till.
+4. Deploya.
+
+Bygget producerar:
+
+```text
+dist/                                    statiska assets (publish-katalog)
+dist/_headers                            cache-headers för /assets/*
+.netlify/functions-internal/server/      SSR-handler (main.mjs + server.mjs)
+```
+
+Serverfunktionen registreras med `path: "/*"` och `preferStatic`, så **ingen egen `_redirects`-regel ska läggas till** — en SPA-fallback skulle kringgå SSR.
+
+Kontroller efter deploy:
+
+- `/` returnerar serverrenderad HTML (sidinnehållet syns i `view-source`, inte bara en tom root-div).
+- "Dagens tips" på startsidan visar en väderbaserad motivering (Open-Meteo via serverfunktion).
+- `/evenemang` listar evenemang och datumväljaren fungerar (Visit Stockholm via serverfunktion).
+- Direktladdning och omladdning av `/karta`, `/evenemang`, `/sparade` ger 200, inte 404.
+- `/finns-inte` visar den svenska 404-sidan.
+
