@@ -1,4 +1,5 @@
 import { Bookmark, BookmarkCheck, Clock } from "lucide-react";
+import { DestinationImage } from "./DestinationImage";
 import type { Destination } from "@/data/types";
 
 type Props = {
