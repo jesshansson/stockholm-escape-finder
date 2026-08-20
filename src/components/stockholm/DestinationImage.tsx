@@ -51,7 +51,13 @@ export function DestinationImage({
   useEffect(() => {
     setFailed(false);
     const el = imgRef.current;
-    if (el && el.complete && el.naturalWidth === 0) setFailed(true);
+    if (!el) return;
+    // A server-rendered image can fail before React hydrates, so React's
+    // onError may never fire. Listen natively and re-check the loaded state.
+    const onError = () => setFailed(true);
+    el.addEventListener("error", onError);
+    if (el.complete && el.naturalWidth === 0) setFailed(true);
+    return () => el.removeEventListener("error", onError);
   }, [src]);
 
   if (failed || !src) {
