@@ -68,7 +68,7 @@ function Saved() {
   );
 
   return (
-    <main className="min-h-screen bg-sand text-ink overflow-x-hidden">
+    <main id="innehall" className="min-h-screen bg-sand text-ink overflow-x-hidden">
       <SiteHeader savedCount={savedIds.length} />
 
       <section className="px-5 sm:px-12 pt-4 sm:pt-8 pb-8">

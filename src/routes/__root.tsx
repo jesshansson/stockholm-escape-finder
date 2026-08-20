@@ -5,7 +5,7 @@ import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink">
+    <main id="innehall" className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink">
       <div className="max-w-md text-center">
         <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-moss">
           404
@@ -44,7 +44,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink">
+    <main id="innehall" className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink">
       <div className="max-w-md text-center">
         <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-moss">
           Något gick fel

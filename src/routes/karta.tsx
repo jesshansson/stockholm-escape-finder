@@ -63,7 +63,7 @@ function MapView() {
   const activeDestination = destinations.find((d) => d.id === activeId) ?? null;
 
   return (
-    <main className="min-h-screen flex flex-col bg-sand text-ink">
+    <main id="innehall" className="min-h-screen flex flex-col bg-sand text-ink">
       <SiteHeader savedCount={savedIds.length} />
       <section className="px-5 sm:px-12 pb-4 sm:pb-6">
         <h1

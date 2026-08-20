@@ -81,7 +81,7 @@ function Discover() {
   };
 
   return (
-    <main className="min-h-screen bg-sand text-ink overflow-x-hidden">
+    <main id="innehall" className="min-h-screen bg-sand text-ink overflow-x-hidden">
       <SiteHeader savedCount={savedIds.length} />
       <Hero onFindPlace={scrollToResults} />
       <DailyTips destinations={destinations} onOpen={(id) => setActiveId(id)} />

@@ -66,7 +66,7 @@ export const Route = createFileRoute("/evenemang")({
 function EventsError({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
   return (
-    <main className="min-h-screen bg-sand text-ink">
+    <main id="innehall" className="min-h-screen bg-sand text-ink">
       <SiteHeader savedCount={0} />
       <div className="px-5 sm:px-12 pt-8 pb-32">
         <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
@@ -93,7 +93,7 @@ function EventsError({ error, reset }: { error: Error; reset: () => void }) {
 
 function EventsNotFound() {
   return (
-    <main className="min-h-screen bg-sand text-ink">
+    <main id="innehall" className="min-h-screen bg-sand text-ink">
       <SiteHeader savedCount={0} />
       <div className="px-5 sm:px-12 pt-8 pb-32">
         <div className="bg-surface rounded-[24px] ring-1 ring-black/5 p-10 sm:p-16 text-center max-w-xl mx-auto">
@@ -141,7 +141,7 @@ function EventsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-sand text-ink">
+    <main id="innehall" className="min-h-screen bg-sand text-ink">
       <SiteHeader savedCount={savedIds.length} />
 
       <section className="px-5 sm:px-12 pt-4 sm:pt-8 pb-8">
