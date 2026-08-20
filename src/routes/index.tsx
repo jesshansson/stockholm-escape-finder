@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Hero } from "@/components/stockholm/Hero";
