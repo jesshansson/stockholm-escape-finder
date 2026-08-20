@@ -24,6 +24,11 @@ export const Route = createFileRoute("/karta")({
         content:
           "Interaktiv karta över dagsutflykter runt Stockholm — naturpärlor, skärgårdsöar, slott och småstäder.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://stockholmsutflykter.netlify.app/karta" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://stockholmsutflykter.netlify.app/karta" },
     ],
   }),
   validateSearch: z.object({ d: z.string().optional() }),

@@ -122,23 +122,23 @@ export function DestinationCard({
         )}
       </div>
       <div className="p-5 flex flex-col">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-muted/70 mb-1.5">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted/70 mb-1.5">
           {d.category}
         </span>
-        <h3 className="text-lg font-medium tracking-tight text-ink mb-2">
+        <h3 className="text-xl font-medium tracking-tight text-ink mb-2">
           {d.name}
         </h3>
-        <p className="text-ink-muted text-xs leading-relaxed mb-5 line-clamp-3">
+        <p className="text-ink-muted text-sm leading-relaxed mb-5 line-clamp-3">
           {d.description}
         </p>
         <div className="flex items-center justify-between mt-auto">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-medium py-1 px-2 bg-ink-soft rounded-md text-ink">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium py-1 px-2 bg-ink-soft rounded-md text-ink">
             <Clock className="size-3" />
             {d.travelTime}
           </span>
           <button
             onClick={onOpen}
-            className="text-xs font-semibold text-moss hover:underline"
+            className="text-sm font-semibold text-moss hover:underline"
           >
             Detaljer →
           </button>

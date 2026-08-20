@@ -36,6 +36,11 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Spontana dagsutflykter runt Stockholm — välj efter humör, restid och plats.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://stockholmsutflykter.netlify.app/" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://stockholmsutflykter.netlify.app/" },
     ],
   }),
   // Tolerant by design: unknown/malformed params are normalized away instead
