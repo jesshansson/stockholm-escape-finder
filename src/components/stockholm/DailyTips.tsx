@@ -6,6 +6,7 @@ import { CloudRain, CloudSun, Snowflake, Sun, Clock } from "lucide-react";
 import { fetchStockholmWeather } from "@/lib/weather.functions";
 import { recommendDestinations, tipsHeadline } from "@/lib/recommend";
 import { isWetCode } from "@/lib/weather";
+import { DestinationImage } from "./DestinationImage";
 import type { Destination } from "@/data/types";
 
 type Props = {
