@@ -6,6 +6,7 @@ import { CloudRain, CloudSun, Snowflake, Sun, Clock } from "lucide-react";
 import { fetchStockholmWeather } from "@/lib/weather.functions";
 import { recommendDestinations, tipsHeadline } from "@/lib/recommend";
 import { isWetCode } from "@/lib/weather";
+import { DestinationImage } from "./DestinationImage";
 import type { Destination } from "@/data/types";
 
 type Props = {
@@ -108,9 +109,9 @@ export function DailyTips({ destinations, onOpen }: Props) {
                     onClick={() => onOpen(d.id)}
                     className="group w-full text-left rounded-2xl ring-1 ring-black/5 overflow-hidden bg-sand hover:bg-ink-soft/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                   >
-                    <img
+                    <DestinationImage
                       src={d.image}
-                      alt={d.name}
+                      name={d.name}
                       width={640}
                       height={400}
                       loading="lazy"
@@ -133,6 +134,18 @@ export function DailyTips({ destinations, onOpen }: Props) {
                 </li>
               ))}
         </ul>
+
+        <p className="mt-4 text-[11px] text-ink-muted">
+          Väderdata från{" "}
+          <a
+            href="https://open-meteo.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-surface rounded"
+          >
+            Open-Meteo
+          </a>
+        </p>
       </div>
     </section>
   );
