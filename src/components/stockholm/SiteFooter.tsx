@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { DestinationImage } from "./DestinationImage";
 import type { Destination } from "@/data/types";
 
 type Props = {
@@ -21,11 +22,12 @@ export function SiteFooter({ saved }: Props) {
                 className="size-16 rounded-xl ring-1 ring-black/5 overflow-hidden"
                 aria-label={d.name}
               >
-                <img
+                <DestinationImage
                   src={d.image}
-                  alt={d.name}
+                  name={d.name}
                   width={128}
                   height={128}
+                  loading="lazy"
                   className="size-full object-cover"
                 />
               </Link>

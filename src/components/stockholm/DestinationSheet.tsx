@@ -7,6 +7,7 @@ import {
 import { Bookmark, BookmarkCheck, Clock, Map as MapIcon, MapPin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { destinationCoordinates } from "@/data/coordinates";
+import { DestinationImage } from "./DestinationImage";
 import type { Destination } from "@/data/types";
 
 type Props = {
@@ -33,9 +34,9 @@ export function DestinationSheet({
         {d && (
           <>
             <div className="relative">
-              <img
+              <DestinationImage
                 src={d.image}
-                alt={d.name}
+                name={d.name}
                 width={800}
                 height={640}
                 className="w-full aspect-[16/10] object-cover"

@@ -108,9 +108,9 @@ export function DailyTips({ destinations, onOpen }: Props) {
                     onClick={() => onOpen(d.id)}
                     className="group w-full text-left rounded-2xl ring-1 ring-black/5 overflow-hidden bg-sand hover:bg-ink-soft/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                   >
-                    <img
+                    <DestinationImage
                       src={d.image}
-                      alt={d.name}
+                      name={d.name}
                       width={640}
                       height={400}
                       loading="lazy"
