@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useMemo } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Hero } from "@/components/stockholm/Hero";
@@ -12,8 +12,16 @@ import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
 import { destinationsQueryOptions, useDestinations } from "@/lib/use-destinations";
 import { useSavedTrips } from "@/lib/use-saved-trips";
-import { emptyFilters, filterDestinations, type ActiveFilters } from "@/lib/filter";
+import {
+  emptyFilters,
+  filterDestinations,
+  filtersToSearch,
+  searchToFilters,
+  type ActiveFilters,
+  type FilterSearch,
+} from "@/lib/filter";
 import type { MoodTag } from "@/data/types";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
