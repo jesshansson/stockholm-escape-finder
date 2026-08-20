@@ -26,7 +26,11 @@ export const Route = createFileRoute("/sparade")({
         content: "Samla dina favoritutflykter runt Stockholm inför nästa ledig dag.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://stockholmsutflykter.netlify.app/sparade" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://stockholmsutflykter.netlify.app/sparade" },
     ],
   }),
   loader: ({ context }) => {

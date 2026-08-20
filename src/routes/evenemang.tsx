@@ -54,6 +54,11 @@ export const Route = createFileRoute("/evenemang")({
         content:
           "Utforska evenemang i Stockholm dag för dag — musik, konst, mat och mer.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://stockholmsutflykter.netlify.app/evenemang" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://stockholmsutflykter.netlify.app/evenemang" },
     ],
   }),
   loader: ({ context }) =>
