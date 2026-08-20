@@ -103,9 +103,9 @@ export function DestinationCard({
           className="block w-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-inset"
           aria-label={`Öppna ${d.name}`}
         >
-          <img
+          <DestinationImage
             src={d.image}
-            alt={d.name}
+            name={d.name}
             width={800}
             height={640}
             loading="lazy"
