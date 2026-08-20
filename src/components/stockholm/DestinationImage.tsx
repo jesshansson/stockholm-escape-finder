@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Short, on-brand label used by the non-image fallback.
@@ -44,9 +44,14 @@ export function DestinationImage({
   alt,
 }: Props) {
   const [failed, setFailed] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
 
+  // Reset for a new src, and catch loads that already failed before hydration
+  // attached the onError handler (SSR markup). Runs once per src — no retries.
   useEffect(() => {
     setFailed(false);
+    const el = imgRef.current;
+    if (el && el.complete && el.naturalWidth === 0) setFailed(true);
   }, [src]);
 
   if (failed || !src) {
@@ -71,6 +76,7 @@ export function DestinationImage({
 
   return (
     <img
+      ref={imgRef}
       src={src}
       alt={alt ?? name}
       width={width}
