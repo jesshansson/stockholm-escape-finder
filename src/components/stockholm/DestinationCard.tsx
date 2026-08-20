@@ -20,20 +20,27 @@ export function DestinationCard({
   if (variant === "featured") {
     return (
       <article className="col-span-1 md:col-span-2 bg-surface rounded-[24px] ring-1 ring-black/5 overflow-hidden flex flex-col md:flex-row group">
-        <button
-          type="button"
-          onClick={onOpen}
-          className="md:w-1/2 block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-inset"
-          aria-label={`Öppna ${d.name}`}
-        >
-          <DestinationImage
-            src={d.image}
-            name={d.name}
-            width={800}
-            height={640}
-            className="h-full w-full min-h-[260px] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          />
-        </button>
+        <div className="md:w-1/2 relative overflow-hidden">
+          <button
+            type="button"
+            onClick={onOpen}
+            className="block w-full h-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-inset"
+            aria-label={`Öppna ${d.name}`}
+          >
+            <DestinationImage
+              src={d.image}
+              name={d.name}
+              width={800}
+              height={640}
+              className="h-full w-full min-h-[260px] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </button>
+          {d.imageCredit && (
+            <span className="pointer-events-none absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/45 text-white text-[9px] font-medium tracking-wide backdrop-blur-sm">
+              Foto: {d.imageCredit.author} / {d.imageCredit.source}
+            </span>
+          )}
+        </div>
         <div className="md:w-1/2 p-7 sm:p-9 flex flex-col">
           <div className="flex justify-between items-start mb-4">
             <div>
