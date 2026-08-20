@@ -1,58 +1,104 @@
-# Audit: Stockholm Escapes as a portfolio case
+# Netlify-deployment av Stockholm Escapes (SSR bevarad)
 
-Verified against the current code: 5 routes (`/`, `/karta`, `/evenemang`, `/sparade`), pure logic modules (`filter.ts`, `recommend.ts`, `weather.ts`, `events.ts`), Vitest with two test files (`src/lib/recommend.test.ts`, `src/data/events.test.ts`), Leaflet map, live Visit Stockholm events with an inline error banner, localStorage saved trips.
+Audit av det faktiska bygget i repot. Slutsats: appen kan flyttas till Netlify med SSR och serverfunktioner intakta, och det krävs mycket lite. Ingen kod i `src/` behöver ändras.
 
-What is already strong and should not be touched: the data/repo separation, the explainable recommendation scoring, entity normalization, Leaflet/OSM independence, per-route `head()` metadata, mobile-first layout.
+## Vad bygget faktiskt gör idag
 
-## Must (highest value per credit)
+- `vite.config.ts` använder `@lovable.dev/vite-tanstack-config` (v2.13.1, publikt paket på npm), som internt lägger till `tanstackStart`, React, Tailwind v4, tsconfig-paths och **Nitro** (`nitro` 3.0.260603-beta ligger i devDependencies).
+- Inuti Lovables sandlåda tvingas Nitro alltid till presetet `cloudflare-module` med output `dist/client` + `dist/server` (verifierat i paketets kod och i `dist/nitro.json`). Utanför sandlådan gäller det preset man själv anger.
+- SSR-entrypunkten är `src/server.ts` (felhanteringswrapper), inkopplad via `tanstackStart.server.entry`.
+- Serverfunktioner: `src/lib/weather.functions.ts` (Open-Meteo) och `src/lib/events.functions.ts` (Visit Stockholm). Båda anropar öppna API:er utan nycklar via `fetch` — inga Node-specifika beroenden, inga hemligheter.
+- Inget i `src/` refererar till Lovable, inga `/api/public/*`-routes, inga miljövariabler behövs (`config.server.ts` läser bara `NODE_ENV`).
 
-### 1. Filters and mood live in the URL on `/`
-Today all filter state is local `useState`, so a filtered result set cannot be shared, bookmarked, or restored on back-navigation. `/karta` already proves the pattern with `validateSearch`. This is the single clearest usability + technical-credibility gain.
-- Files: `src/routes/index.tsx`, `src/lib/filter.ts` (add `parseFilters` / `serializeFilters` helpers), new `src/lib/filter.test.ts`.
-- Acceptance: selecting filters updates the query string; reloading or sharing the URL restores exactly the same result set; "Rensa filter" clears the query string; invalid/unknown values are dropped instead of crashing; round-trip covered by unit tests.
+Nitro har ett inbyggt `netlify`-preset i den installerade versionen. Det skriver serverhandlern till `.netlify/functions-internal/server/` och statiska filer till `dist/`, och genererar `_redirects` och `_headers` automatiskt.
 
-### 2. Swedish, on-brand 404 and error pages
-`__root.tsx` still ships the English default shell ("Page not found", "Go home", `bg-background`/`text-foreground` tokens) inside a `lang="sv"` document. A recruiter hitting a bad URL sees a different, unfinished product.
-- Files: `src/routes/__root.tsx`.
-- Acceptance: 404 and error boundary are in Swedish, use the sand/ink/moss tokens and the serif headline, and offer links back to start and to `/karta`.
+## Ändringar som behövs
 
-### 3. Test the filter logic (the app's core rule set)
-`filter.ts` is the most business-logic-dense pure module and has zero tests, while `recommend.ts` has good ones. Notably practical tags are AND-matched while moods are OR-matched — an intentional rule worth pinning down.
-- Files: new `src/lib/filter.test.ts`.
-- Acceptance: tests cover empty filters, AND vs OR semantics, combined filters, and `countActiveFilters`.
+### 1. `vite.config.ts` — välj Netlify-preset utanför Lovable
 
-### 4. Accessibility pass: skip link and heading order
-No skip link exists, and the header nav is repeated on every page before content.
-- Files: `src/routes/__root.tsx` (or `SiteHeader.tsx`), `src/styles.css` for the focus-visible reveal.
-- Acceptance: first Tab reveals "Hoppa till innehåll" and jumps to the main content; every route has exactly one `<h1>`; no keyboard trap in the destination sheet.
+```ts
+export default defineConfig({
+  tanstackStart: { server: { entry: "server" } },
+  nitro: process.env.NETLIFY ? { preset: "netlify" } : undefined,
+});
+```
 
-### 5. A README that explains the product decisions
-There is no README at all. For a portfolio case this is the highest-leverage artifact: it is what a recruiter reads first.
-- Files: new `README.md`.
-- Acceptance: covers the problem, the three product decisions (curated data over a scraped feed, explainable non-AI recommendations, no login by design), architecture (repo pattern, pure logic modules, server functions for Open-Meteo and Visit Stockholm), how to run and test, and known limitations.
+`NETLIFY` sätts automatiskt av Netlifys byggmiljö. I Lovables sandlåda ignoreras inställningen ändå (cloudflare tvingas), så preview fortsätter fungera oförändrat under uppsägningstiden.
 
-## Strong value (do after the Must batch)
+### 2. `netlify.toml` (ny fil i repo-roten)
 
-- **Remote image fallback.** Wikimedia URLs are third-party and can 404; a broken image in a card is the most visible failure mode. Add an `onError` fallback tile in `DestinationCard`/`DestinationSheet`.
-- **Dead file cleanup.** `src/components/stockholm/SurpriseFab.tsx` is unused after the feature was removed. Delete it.
-- **Empty state on `/sparade`** with a clear route back to discovery (verify current wording).
-- **`public/robots.txt` + a static `sitemap.xml`** for the four routes, plus an `og:image`.
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
 
-## Skip (explicitly not worth it here)
+[build.environment]
+  NODE_VERSION = "22"
+```
 
-- Auth, database, AI chat, paid APIs — out of scope and maintenance-heavy.
-- E2E test suite (Playwright) — high setup cost, low incremental signal next to unit tests on pure logic.
-- i18n/English toggle — doubles content maintenance and weakens the Swedish local-product story.
-- Redesign, dark mode, new destination categories, PWA/offline.
-- Rewriting the map or the events integration; both work.
+- `publish = "dist"` (inte `dist/client`) — Netlify-presetet lägger de statiska filerna direkt i `dist/`.
+- Ingen `functions`-inställning behövs: `.netlify/functions-internal/` plockas upp automatiskt.
+- **Ingen egen redirect-fil ska skrivas.** Nitro genererar `dist/_redirects` med `/* → /.netlify/functions/server 200`. En handskriven SPA-redirect skulle döda SSR.
 
-## Credit-efficient batch (one prompt)
+### 3. Lockfile / paketerare
 
-Do Must items 1–5 together, then verify:
-1. `src/lib/filter.ts` — add `filtersToSearch` / `searchToFilters` with tolerant parsing.
-2. `src/routes/index.tsx` — `validateSearch` + drive `filters` from search params via `useNavigate`.
-3. `src/routes/__root.tsx` — Swedish 404/error components, skip link.
-4. `src/lib/filter.test.ts` — new tests.
-5. `README.md` — product case write-up.
+Repot har bara `bun.lock`. Två alternativ:
+- **A (rekommenderat):** behåll Bun — sätt build command till `bun install && bun run build` och `BUN_VERSION = "1.2"` i `[build.environment]`. Netlify stöder Bun natively.
+- **B:** generera en `package-lock.json` lokalt och committa den, och kör `npm run build`.
 
-Verification in the same pass: `bunx vitest run` (all three test files green), a TypeScript check, and a production build. Plus a Playwright check at 1280px and 360px that filtering updates the URL and a reload restores the same results.
+Välj ett; blanda inte.
+
+### 4. `bunfig.toml`
+
+`minimumReleaseAge`-regeln är en Lovable-specifik supply chain-spärr. Den fungerar även på Netlify men kan försena installation av helt nya versioner. Kan lämnas som den är eller tas bort — inget hinder.
+
+## Runtime- och miljökrav
+
+- **Node 22** (Nitro kräver `^20.19 || >=22.12`; Netlify-funktioner kör Node 22 som standard).
+- Inga miljövariabler eller API-nycklar krävs — Open-Meteo och Visit Stockholm är öppna.
+- devDependencies måste installeras i bygget (Netlifys standard) eftersom `@lovable.dev/vite-tanstack-config` och `nitro` ligger där.
+- Utgående nätverkstrafik från funktionen till `api.open-meteo.com` och `api.visitstockholm.com` — tillåtet på Netlify utan konfiguration.
+
+## Verifiering efter deploy
+
+1. `/` returnerar serverrenderad HTML: `curl -s https://<site>.netlify.app/ | grep -c "Hitta din nästa"` ska ge > 0 (inte en tom SPA-shell).
+2. **Väder:** öppna `/` och kontrollera att "Dagens tips" visar en väderbaserad motivering, inte ett felmeddelande. I Netlify → Logs → Functions ska `server`-funktionen ha loggat anropet utan fel.
+3. **Evenemang:** öppna `/evenemang`, byt datum och kontrollera att listan fylls från API:et samt att "Gratis"-filtret fungerar.
+4. **Deep links:** ladda om direkt på `/karta?d=<id>`, `/evenemang` och `/sparade` — 200, inte 404 (bevisar att redirecten till funktionen finns).
+5. **404:** besök `/finns-inte` — svensk 404-sida ska renderas.
+6. Kontrollera att `dist/_redirects` och `.netlify/functions-internal/server/server.mjs` finns i bygglogg/artefakter.
+
+## Att göra manuellt innan Pro sägs upp
+
+1. **Exportera koden till GitHub** från Lovable (GitHub-kopplingen ägs av Lovable-projektet) och bekräfta att repot innehåller allt inklusive `src/`, `vite.config.ts` och lockfile.
+2. Gör ändring 1–3 ovan i en branch och verifiera **en riktig Netlify-deploy** medan Lovable fortfarande är aktivt, så det finns en fungerande fallback.
+3. Peka om ev. domän till Netlify (DNS) och avpublicera Lovable-siten först efter att Netlify verifierats.
+4. Notera att `@lovable.dev/vite-tanstack-config` fortsätter hämtas från npm — den fungerar utan Lovable-konto, men om du vill klippa bandet helt går det senare att ersätta den med explicita plugins (`tanstackStart`, `viteReact`, `tailwindcss`, `tsConfigPaths`, `nitro`). Inte nödvändigt för deployen.
+
+## Vad som är knutet till Lovable och slutar fungera
+
+- **Preview-URL:er** (`id-preview--*.lovable.app`), share-preview-länkar och publiceringsflödet i Lovable.
+- **Lovable-badge** och Lovables analytics/redigeringsöverlägg.
+- **Sandlådans byggbeteende**: det tvingade `cloudflare-module`-presetet och Lovables felloggning i editorn.
+- **`/api/public/*`-undantaget** från Lovables inloggningsskydd — irrelevant här, appen har inga sådana routes.
+- **Lovable AI Gateway / `LOVABLE_API_KEY`** — används inte i projektet, så inget bortfall.
+- Ingen appfunktion i övrigt är beroende av Lovable: karta (Leaflet/OSM), väder, evenemang, sparade utflykter (localStorage) och bilder (Wikimedia) är alla externa eller lokala.
+
+## Acceptanskriterier
+
+- Netlify-bygget lyckas med Node 22 och producerar både `dist/` (statiskt) och `.netlify/functions-internal/server/`.
+- Serverrenderad HTML på alla fyra routes; inga 404 vid direktladdning eller omladdning.
+- Väder- och evenemangsfunktioner returnerar riktig data i produktion.
+- Ingen visuell eller innehållsmässig skillnad mot Lovable-previewen.
+- `bun run test`, typkontroll och `bun run build` fortsatt gröna lokalt.
+
+## Rollback
+
+- Ändringarna är isolerade till `vite.config.ts` (villkorad på `NETLIFY`) och en ny `netlify.toml`, så Lovable-bygget påverkas inte — rollback = återställ dessa två filer.
+- Behåll Lovable-publiceringen aktiv tills Netlify-deployen är verifierad; DNS-bytet görs sist och kan pekas tillbaka.
+- Netlify har "Rollback to previous deploy" per deploy om något går fel efter cutover.
+
+## Risker / öppna frågor
+
+- Netlify-presetet i denna Nitro-beta är mindre bevandrat än cloudflare-presetet; det är därför steg 2 (testdeploy före uppsägning) är obligatoriskt, inte valfritt.
+- Om Bun-installationen strular på Netlify: byt till alternativ B (committad `package-lock.json`).
