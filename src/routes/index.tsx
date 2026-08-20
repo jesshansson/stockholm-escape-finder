@@ -39,6 +39,10 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  // Tolerant by design: unknown/malformed params are normalized away instead
+  // of throwing, so an outdated or hand-edited link still renders the page.
+  validateSearch: (search: Record<string, unknown>): FilterSearch =>
+    filtersToSearch(searchToFilters(search as Partial<FilterSearch>)),
   loader: ({ context }) => {
     context.queryClient.ensureQueryData(destinationsQueryOptions());
   },
@@ -61,10 +65,20 @@ function Discover() {
   const { data: destinations } = useDestinations();
   const { savedIds, toggle, isSaved } = useSavedTrips();
 
-  const [filters, setFilters] = useState<ActiveFilters>(emptyFilters);
+  // Filters live in the URL, so a filtered view can be shared and survives reload.
+  const search = Route.useSearch();
+  const navigate = Route.useNavigate();
+  const filters = useMemo(() => searchToFilters(search), [search]);
+
+  const setFilters = (next: ActiveFilters) => {
+    // `replace` keeps the back button meaningful (page-level, not per click).
+    navigate({ to: ".", search: filtersToSearch(next), replace: true });
+  };
+
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const filtered = useMemo(() => filterDestinations(destinations, filters), [destinations, filters]);
+
 
   const activeDestination = useMemo(
     () => destinations.find((d) => d.id === activeId) ?? null,
