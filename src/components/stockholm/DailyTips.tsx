@@ -134,6 +134,18 @@ export function DailyTips({ destinations, onOpen }: Props) {
                 </li>
               ))}
         </ul>
+
+        <p className="mt-4 text-[11px] text-ink-muted">
+          Väderdata från{" "}
+          <a
+            href="https://open-meteo.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-surface rounded"
+          >
+            Open-Meteo
+          </a>
+        </p>
       </div>
     </section>
   );
