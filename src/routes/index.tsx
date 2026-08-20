@@ -12,7 +12,14 @@ import { SiteFooter } from "@/components/stockholm/SiteFooter";
 
 import { destinationsQueryOptions, useDestinations } from "@/lib/use-destinations";
 import { useSavedTrips } from "@/lib/use-saved-trips";
-import { emptyFilters, filterDestinations, type ActiveFilters } from "@/lib/filter";
+import {
+  emptyFilters,
+  filterDestinations,
+  filtersToSearch,
+  searchToFilters,
+  type ActiveFilters,
+  type FilterSearch,
+} from "@/lib/filter";
 import type { MoodTag } from "@/data/types";
 
 export const Route = createFileRoute("/")({
@@ -31,6 +38,10 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  // Tolerant by design: unknown/malformed params are normalized away instead
+  // of throwing, so an outdated or hand-edited link still renders the page.
+  validateSearch: (search: Record<string, unknown>): FilterSearch =>
+    filtersToSearch(searchToFilters(search as Partial<FilterSearch>)),
   loader: ({ context }) => {
     context.queryClient.ensureQueryData(destinationsQueryOptions());
   },
@@ -41,7 +52,9 @@ function IndexPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-sand flex items-center justify-center text-ink-muted">Laddar utflykter…</div>
+        <div className="min-h-screen bg-sand flex items-center justify-center text-ink-muted">
+          Laddar utflykter…
+        </div>
       }
     >
       <Discover />
@@ -53,10 +66,22 @@ function Discover() {
   const { data: destinations } = useDestinations();
   const { savedIds, toggle, isSaved } = useSavedTrips();
 
-  const [filters, setFilters] = useState<ActiveFilters>(emptyFilters);
+  // Filters live in the URL, so a filtered view can be shared and survives reload.
+  const search = Route.useSearch();
+  const navigate = Route.useNavigate();
+  const filters = useMemo(() => searchToFilters(search), [search]);
+
+  const setFilters = (next: ActiveFilters) => {
+    // `replace` keeps the back button meaningful (page-level, not per click).
+    navigate({ to: ".", search: filtersToSearch(next), replace: true });
+  };
+
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  const filtered = useMemo(() => filterDestinations(destinations, filters), [destinations, filters]);
+  const filtered = useMemo(
+    () => filterDestinations(destinations, filters),
+    [destinations, filters],
+  );
 
   const activeDestination = useMemo(
     () => destinations.find((d) => d.id === activeId) ?? null,
@@ -65,14 +90,18 @@ function Discover() {
 
   const savedDestinations = useMemo(
     () =>
-      savedIds.map((id) => destinations.find((d) => d.id === id)).filter((d): d is NonNullable<typeof d> => Boolean(d)),
+      savedIds
+        .map((id) => destinations.find((d) => d.id === id))
+        .filter((d): d is NonNullable<typeof d> => Boolean(d)),
     [savedIds, destinations],
   );
 
   const toggleMood = (mood: MoodTag) => {
     setFilters({
       ...filters,
-      moods: filters.moods.includes(mood) ? filters.moods.filter((m) => m !== mood) : [...filters.moods, mood],
+      moods: filters.moods.includes(mood)
+        ? filters.moods.filter((m) => m !== mood)
+        : [...filters.moods, mood],
     });
   };
 
@@ -81,7 +110,7 @@ function Discover() {
   };
 
   return (
-    <main className="min-h-screen bg-sand text-ink overflow-x-hidden">
+    <main id="innehall" className="min-h-screen bg-sand text-ink overflow-x-hidden">
       <SiteHeader savedCount={savedIds.length} />
       <Hero onFindPlace={scrollToResults} />
       <DailyTips destinations={destinations} onOpen={(id) => setActiveId(id)} />
