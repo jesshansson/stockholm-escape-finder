@@ -16,7 +16,6 @@ import {
   PRACTICAL_OPTIONS,
 } from "@/data/filters";
 
-
 export type ActiveFilters = {
   distance: DistanceRange[];
   categories: Category[];
@@ -38,22 +37,12 @@ export function filterDestinations(
   filters: ActiveFilters,
 ): Destination[] {
   return destinations.filter((d) => {
-    if (filters.distance.length && !filters.distance.includes(d.distanceRange))
+    if (filters.distance.length && !filters.distance.includes(d.distanceRange)) return false;
+    if (filters.categories.length && !filters.categories.includes(d.category)) return false;
+    if (filters.moods.length && !filters.moods.some((m) => d.moodTags.includes(m))) return false;
+    if (filters.practical.length && !filters.practical.every((p) => d.practicalTags.includes(p)))
       return false;
-    if (filters.categories.length && !filters.categories.includes(d.category))
-      return false;
-    if (
-      filters.moods.length &&
-      !filters.moods.some((m) => d.moodTags.includes(m))
-    )
-      return false;
-    if (
-      filters.practical.length &&
-      !filters.practical.every((p) => d.practicalTags.includes(p))
-    )
-      return false;
-    if (filters.durations.length && !filters.durations.includes(d.duration))
-      return false;
+    if (filters.durations.length && !filters.durations.includes(d.duration)) return false;
     return true;
   });
 }

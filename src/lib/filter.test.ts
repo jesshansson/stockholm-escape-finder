@@ -77,11 +77,7 @@ function ids(list: Destination[]) {
 
 describe("filterDestinations", () => {
   it("returns everything when no filter is active", () => {
-    expect(ids(filterDestinations(all, emptyFilters))).toEqual([
-      "near-museum",
-      "island",
-      "forest",
-    ]);
+    expect(ids(filterDestinations(all, emptyFilters))).toEqual(["near-museum", "island", "forest"]);
   });
 
   it("matches moods with OR — any selected mood is enough", () => {
@@ -93,9 +89,10 @@ describe("filterDestinations", () => {
   });
 
   it("matches practical tags with AND — every selected tag must be present", () => {
-    expect(
-      ids(filterDestinations(all, { ...emptyFilters, practical: ["Utomhus"] })),
-    ).toEqual(["island", "forest"]);
+    expect(ids(filterDestinations(all, { ...emptyFilters, practical: ["Utomhus"] }))).toEqual([
+      "island",
+      "forest",
+    ]);
 
     expect(
       ids(
@@ -108,17 +105,18 @@ describe("filterDestinations", () => {
   });
 
   it("filters on distance, category and duration", () => {
-    expect(
-      ids(filterDestinations(all, { ...emptyFilters, distance: ["0-30", "30-60"] })),
-    ).toEqual(["near-museum", "forest"]);
+    expect(ids(filterDestinations(all, { ...emptyFilters, distance: ["0-30", "30-60"] }))).toEqual([
+      "near-museum",
+      "forest",
+    ]);
 
-    expect(
-      ids(filterDestinations(all, { ...emptyFilters, categories: ["Skärgårdsö"] })),
-    ).toEqual(["island"]);
+    expect(ids(filterDestinations(all, { ...emptyFilters, categories: ["Skärgårdsö"] }))).toEqual([
+      "island",
+    ]);
 
-    expect(
-      ids(filterDestinations(all, { ...emptyFilters, durations: ["Heldag"] })),
-    ).toEqual(["island"]);
+    expect(ids(filterDestinations(all, { ...emptyFilters, durations: ["Heldag"] }))).toEqual([
+      "island",
+    ]);
   });
 
   it("combines filter groups with AND across groups", () => {
@@ -132,9 +130,7 @@ describe("filterDestinations", () => {
   });
 
   it("can end up with no matches", () => {
-    expect(
-      filterDestinations(all, { ...emptyFilters, categories: ["Café"] }),
-    ).toHaveLength(0);
+    expect(filterDestinations(all, { ...emptyFilters, categories: ["Café"] })).toHaveLength(0);
   });
 });
 
@@ -194,9 +190,7 @@ describe("URL serialization", () => {
   it("tolerates missing, empty and non-string params", () => {
     expect(searchToFilters(undefined)).toEqual(emptyFilters);
     expect(searchToFilters({})).toEqual(emptyFilters);
-    expect(
-      searchToFilters({ d: "", k: 42, h: null } as never),
-    ).toEqual(emptyFilters);
+    expect(searchToFilters({ d: "", k: 42, h: null } as never)).toEqual(emptyFilters);
   });
 
   it("is idempotent — normalizing an already-normalized search is a no-op", () => {

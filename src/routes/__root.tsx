@@ -1,15 +1,23 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Outlet, Link, createRootRouteWithContext, useRouter, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+  Outlet,
+  Link,
+  createRootRouteWithContext,
+  useRouter,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
-    <main id="innehall" className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink">
+    <main
+      id="innehall"
+      className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink"
+    >
       <div className="max-w-md text-center">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-moss">
-          404
-        </p>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-moss">404</p>
         <h1
           style={{ fontFamily: "var(--font-serif)" }}
           className="mt-3 text-4xl sm:text-5xl font-normal tracking-[-0.02em] text-ink"
@@ -17,8 +25,8 @@ function NotFoundComponent() {
           Den här sidan finns inte
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-          Sidan du letar efter har flyttat eller har aldrig funnits. Men det finns
-          gott om utflykter kvar att upptäcka.
+          Sidan du letar efter har flyttat eller har aldrig funnits. Men det finns gott om utflykter
+          kvar att upptäcka.
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-2.5">
           <Link
@@ -44,7 +52,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <main id="innehall" className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink">
+    <main
+      id="innehall"
+      className="flex min-h-screen items-center justify-center bg-sand px-5 text-ink"
+    >
       <div className="max-w-md text-center">
         <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-moss">
           Något gick fel
@@ -56,8 +67,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           Sidan kunde inte laddas
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-          Det kan vara ett tillfälligt fel. Försök igen, eller gå tillbaka till
-          startsidan.
+          Det kan vara ett tillfälligt fel. Försök igen, eller gå tillbaka till startsidan.
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-2.5">
           <button
@@ -80,7 +90,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     </main>
   );
 }
-
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -150,6 +159,5 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
-
   );
 }

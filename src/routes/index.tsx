@@ -22,7 +22,6 @@ import {
 } from "@/lib/filter";
 import type { MoodTag } from "@/data/types";
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -53,7 +52,9 @@ function IndexPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-sand flex items-center justify-center text-ink-muted">Laddar utflykter…</div>
+        <div className="min-h-screen bg-sand flex items-center justify-center text-ink-muted">
+          Laddar utflykter…
+        </div>
       }
     >
       <Discover />
@@ -77,8 +78,10 @@ function Discover() {
 
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  const filtered = useMemo(() => filterDestinations(destinations, filters), [destinations, filters]);
-
+  const filtered = useMemo(
+    () => filterDestinations(destinations, filters),
+    [destinations, filters],
+  );
 
   const activeDestination = useMemo(
     () => destinations.find((d) => d.id === activeId) ?? null,
@@ -87,14 +90,18 @@ function Discover() {
 
   const savedDestinations = useMemo(
     () =>
-      savedIds.map((id) => destinations.find((d) => d.id === id)).filter((d): d is NonNullable<typeof d> => Boolean(d)),
+      savedIds
+        .map((id) => destinations.find((d) => d.id === id))
+        .filter((d): d is NonNullable<typeof d> => Boolean(d)),
     [savedIds, destinations],
   );
 
   const toggleMood = (mood: MoodTag) => {
     setFilters({
       ...filters,
-      moods: filters.moods.includes(mood) ? filters.moods.filter((m) => m !== mood) : [...filters.moods, mood],
+      moods: filters.moods.includes(mood)
+        ? filters.moods.filter((m) => m !== mood)
+        : [...filters.moods, mood],
     });
   };
 
