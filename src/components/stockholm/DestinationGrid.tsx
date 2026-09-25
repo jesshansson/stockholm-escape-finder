@@ -37,11 +37,19 @@ export function DestinationGrid({
     );
   }
 
+  // Rotate the spotlight daily: a different destination is featured each day.
+  const now = new Date();
+  const dayIndex = Math.floor(
+    Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86_400_000,
+  );
+  const start = dayIndex % destinations.length;
+  const ordered = [...destinations.slice(start), ...destinations.slice(0, start)];
+
   return (
     <section id="upptack" className="px-5 sm:px-12 pb-36 sm:pb-32">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
 
-        {destinations.map((d, i) => (
+        {ordered.map((d, i) => (
           <DestinationCard
             key={d.id}
             destination={d}
