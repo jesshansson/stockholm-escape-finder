@@ -1,4 +1,5 @@
-import { Compass } from "lucide-react";
+import { Calendar as CalendarIcon, Compass } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 type Props = {
   onFindPlace: () => void;
@@ -16,7 +17,7 @@ export function Hero({ onFindPlace }: Props) {
           skärgårdsöar — baserat på hur långt du vill åka, vilket humör du är
           på och vilken sorts dag du vill ha.
         </p>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col items-start gap-3">
           <button
             onClick={onFindPlace}
             className="inline-flex items-center gap-2 px-6 py-3 bg-ink text-sand rounded-full font-medium text-sm ring-1 ring-ink hover:-translate-y-px transition-transform"
@@ -24,6 +25,13 @@ export function Hero({ onFindPlace }: Props) {
             <Compass className="size-4" />
             Hitta en plats
           </button>
+          <Link
+            to="/evenemang"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm ring-1 ring-ink/20 text-ink hover:bg-ink-soft hover:-translate-y-px transition-all"
+          >
+            <CalendarIcon className="size-4" />
+            Hitta ett evenemang
+          </Link>
         </div>
       </div>
     </section>
