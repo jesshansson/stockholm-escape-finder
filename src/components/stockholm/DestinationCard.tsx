@@ -131,16 +131,16 @@ export function DestinationCard({
         <p className="text-ink-muted text-sm leading-relaxed mb-5 line-clamp-3">
           {d.description}
         </p>
-        <div className="flex items-center justify-between mt-auto">
+        <div className="mt-auto space-y-3">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium py-1 px-2 bg-ink-soft rounded-md text-ink">
             <Clock className="size-3" />
             {d.travelTime}
           </span>
           <button
             onClick={onOpen}
-            className="text-sm font-semibold text-moss hover:underline"
+            className="w-full py-2.5 px-4 bg-ink text-sand rounded-lg text-sm font-medium ring-1 ring-ink hover:-translate-y-px transition-transform"
           >
-            Detaljer →
+            Visa detaljer
           </button>
         </div>
       </div>
