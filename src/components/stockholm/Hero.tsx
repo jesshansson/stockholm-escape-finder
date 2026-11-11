@@ -27,7 +27,7 @@ export function Hero({ onFindPlace }: Props) {
           </button>
           <Link
             to="/evenemang"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm ring-1 ring-ink/20 text-ink hover:bg-ink-soft hover:-translate-y-px transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#35543e] text-sand rounded-full font-medium text-sm ring-1 ring-[#35543e] hover:-translate-y-px transition-transform"
           >
             <CalendarIcon className="size-4" />
             Hitta ett evenemang

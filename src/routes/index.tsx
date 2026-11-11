@@ -47,8 +47,15 @@ export const Route = createFileRoute("/")({
   // of throwing, so an outdated or hand-edited link still renders the page.
   validateSearch: (search: Record<string, unknown>): FilterSearch =>
     filtersToSearch(searchToFilters(search as Partial<FilterSearch>)),
-  loader: ({ context }) => {
-    context.queryClient.ensureQueryData(destinationsQueryOptions());
+  loader: async ({ context }) => {
+    const destinations = await context.queryClient.ensureQueryData(destinationsQueryOptions());
+    const destinationOrder = destinations.map((d) => d.id);
+    // Fisher–Yates: share the shuffled order with the client to keep SSR consistent.
+    for (let i = destinationOrder.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [destinationOrder[i], destinationOrder[j]] = [destinationOrder[j], destinationOrder[i]];
+    }
+    return { destinationOrder };
   },
   component: IndexPage,
 });
@@ -70,6 +77,15 @@ function IndexPage() {
 function Discover() {
   const { data: destinations } = useDestinations();
   const { savedIds, toggle, isSaved } = useSavedTrips();
+  const loadedOrder = Route.useLoaderData().destinationOrder;
+  // Keep this page's order stable when filters change or data is refreshed.
+  const [destinationOrder] = useState(loadedOrder);
+  const orderedDestinations = useMemo(() => {
+    const rank = new Map(destinationOrder.map((id, index) => [id, index]));
+    return [...destinations].sort(
+      (a, b) => (rank.get(a.id) ?? Infinity) - (rank.get(b.id) ?? Infinity),
+    );
+  }, [destinations, destinationOrder]);
 
   // Filters live in the URL, so a filtered view can be shared and survives reload.
   const search = Route.useSearch();
@@ -84,8 +100,8 @@ function Discover() {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const filtered = useMemo(
-    () => filterDestinations(destinations, filters),
-    [destinations, filters],
+    () => filterDestinations(orderedDestinations, filters),
+    [orderedDestinations, filters],
   );
 
   const activeDestination = useMemo(

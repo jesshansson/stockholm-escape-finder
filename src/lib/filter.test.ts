@@ -80,12 +80,25 @@ describe("filterDestinations", () => {
     expect(ids(filterDestinations(all, emptyFilters))).toEqual(["near-museum", "island", "forest"]);
   });
 
-  it("matches moods with OR — any selected mood is enough", () => {
+  it("matches moods with AND — every selected mood must be present", () => {
+    const rainyOnly = makeDestination({ id: "rainy-only", moodTags: ["Regnig dag"] });
+    const childFriendlyOnly = makeDestination({
+      id: "child-friendly-only",
+      moodTags: ["Barnvänlig"],
+    });
+    const result = filterDestinations([...all, rainyOnly, childFriendlyOnly], {
+      ...emptyFilters,
+      moods: ["Regnig dag", "Barnvänlig"],
+    });
+    expect(ids(result)).toEqual(["near-museum"]);
+  });
+
+  it("ignores moods when none are selected while applying other filters", () => {
     const result = filterDestinations(all, {
       ...emptyFilters,
-      moods: ["Aktiv", "Regnig dag"],
+      practical: ["Utomhus"],
     });
-    expect(ids(result)).toEqual(["near-museum", "forest"]);
+    expect(ids(result)).toEqual(["island", "forest"]);
   });
 
   it("matches practical tags with AND — every selected tag must be present", () => {
@@ -123,7 +136,7 @@ describe("filterDestinations", () => {
     const result = filterDestinations(all, {
       ...emptyFilters,
       distance: ["0-30"],
-      moods: ["Regnig dag", "Aktiv"],
+      moods: ["Regnig dag", "Barnvänlig"],
       practical: ["Inomhus"],
     });
     expect(ids(result)).toEqual(["near-museum"]);

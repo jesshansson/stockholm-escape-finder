@@ -63,7 +63,7 @@ Tre principer styr uppdelningen:
 
 Två detaljer som var medvetna beslut snarare än självklarheter:
 
-- Humörfilter matchar med **OR** (visa allt som passar något av mina humör), praktiska filter med **AND** (alla mina krav måste vara uppfyllda). Semantiken är låst med enhetstester.
+- Humörfilter och praktiska filter matchar med **AND** (alla valda humör respektive praktiska krav måste vara uppfyllda). Utan valda humör avgör övriga filter vilka platser som visas. Semantiken är låst med enhetstester.
 - Text från Visit Stockholms API normaliseras (HTML-entiteter avkodas, blanksteg kollapsas) vid datagränsen istället för i vyn, så `&amp;` aldrig kan läcka ut i gränssnittet.
 
 ## Tillgänglighet
@@ -97,7 +97,7 @@ Enhetstesterna täcker det som faktiskt kan gå sönder tyst: filtersemantiken, 
 ## Kom igång lokalt
 
 ```bash
-bun install
+bun install --frozen-lockfile
 bun run dev      # http://localhost:8080
 ```
 

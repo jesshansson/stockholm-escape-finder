@@ -121,7 +121,7 @@ export function DestinationCard({
           </span>
         )}
       </div>
-      <div className="p-5 flex flex-col">
+      <div className="p-5 flex flex-1 flex-col">
         <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted/70 mb-1.5">
           {d.category}
         </span>
